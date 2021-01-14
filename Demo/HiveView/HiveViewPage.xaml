@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="Demo.HiveView.HiveViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.HiveView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <controls:DockPanel>
+
+        <Border controls:DockPanel.Dock="Top" Padding="10" 
+                Background="{ThemeResource AppBarBackgroundThemeBrush}">
+            <TextBlock TextWrapping="WrapWholeWords">
+                HiveView use a HivePanel as ItemsPanelTemplate. ItemsPanelTemplate must be inherited from HivePanel.
+            </TextBlock>
+        </Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="16"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <controls:GridSplitter Grid.Column="1" 
+                               ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
+                               GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
+                               />
+
+            <lc:HiveView x:Name="hiveView" Padding="10,10,20,10"
+                      Spacing="{x:Bind viewModel.ViewSpacing,Mode=OneWay}"
+                      FixedEdge="{x:Bind viewModel.ViewEdge,Mode=OneWay}"
+                      ItemsSource="{x:Bind viewModel.Numbers}" 
+                      SelectionChanged="hiveView_SelectionChanged" />
+
+            <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
+                <TextBlock Text="Spacing"/>
+                <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.ViewSpacing,Mode=TwoWay}" />
+                <TextBlock Text="FixedEdge"/>
+                <Slider Minimum="20" Maximum="60" Value="{x:Bind viewModel.ViewEdge,Mode=TwoWay}" />
+                <TextBlock Text="SelectedItem"/>
+                <TextBlock Text="{x:Bind viewModel.ViewSelected,Mode=OneWay}" TextWrapping="Wrap"/>
+
+                <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                                    HorizontalSpacing="12" Padding="12,3">
+
+                    <HyperlinkButton Content="HiveView" 
+                                     ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveView.cs"/>
+                    <HyperlinkButton Content="HivePanel" 
+                                     ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HivePanel.cs"/>
+                    <HyperlinkButton Content="HiveViewItem"
+                                     ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveViewItem.cs"/>
+                    <HyperlinkButton Content="Sample" 
+                                     ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/HiveView/HiveViewPage.xaml"/>
+
+                </controls:WrapPanel>
+            </StackPanel>
+        </Grid>
+    </controls:DockPanel>
+</Page>

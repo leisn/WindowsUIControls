@@ -1,0 +1,85 @@
+﻿<Page
+    x:Class="Demo.HiveView.HiveGridPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.HiveView"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+     xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:GridSplitter Grid.Column="1" 
+                               ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
+                               GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
+                               />
+        <ScrollViewer >
+            <lc:HiveGrid x:Name="hiveGrid"
+                             AutoCell="{x:Bind viewModel.Autocell,Mode=OneWay}"
+                             Spacing="{x:Bind viewModel.PanelSpacing,Mode=OneWay}"
+                             RowCount="{x:Bind viewModel.PanelRowCont,Mode=OneWay}"
+                             ColumnCount="{x:Bind viewModel.PanelColCont,Mode=OneWay}"
+                             FixedEdge="{x:Bind viewModel.PanelFixedEdge,Mode=OneWay}"
+                             Margin="10,10,20,10">
+                <lc:HiveViewItem Content="1(3,6)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="6"  />
+                <lc:HiveViewItem Content="2(3,5)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="5"/>
+                <lc:HiveViewItem Content="3(3,4)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="4" />
+                <lc:HiveViewItem Content="4(3,3)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="3" />
+                <lc:HiveViewItem Content="5(3,2)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="2"  />
+                <lc:HiveViewItem Content="6(3,1)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="1"  />
+                <lc:HiveViewItem Content="7(3,0)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="0"  />
+                <lc:HiveViewItem Content="8(2,6)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="6" />
+                <lc:HiveViewItem Content="9(2,5)"  lc:HiveGrid.Row="2" lc:HiveGrid.Column="5" />
+                <lc:HiveViewItem Content="10(2,4)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="4"  />
+                <lc:HiveViewItem Content="11(2,3)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="3"  />
+                <lc:HiveViewItem Content="12(2,2)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="2" />
+                <lc:HiveViewItem Content="13(2,1)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="1" />
+                <lc:HiveViewItem Content="14(2,0)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="0"  />
+                <lc:HiveViewItem Content="15(1,6)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="6"  />
+                <lc:HiveViewItem Content="16(1,5)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="5" />
+                <lc:HiveViewItem Content="17(1,4)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="4"  />
+                <lc:HiveViewItem Content="18(1,3)"  lc:HiveGrid.Row="1" lc:HiveGrid.Column="3" />
+                <lc:HiveViewItem Content="19(1,2)"  lc:HiveGrid.Row="1" lc:HiveGrid.Column="2" />
+                <lc:HiveViewItem Content="20(1,1)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="1"  />
+                <lc:HiveViewItem Content="21(1,0)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="0" />
+                <lc:HiveViewItem Content="22(0,6)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="6"  />
+                <lc:HiveViewItem Content="23(0,5)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="5" />
+                <lc:HiveViewItem Content="24(0,4)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="4"  />
+                <lc:HiveViewItem Content="25(0,3)"  lc:HiveGrid.Row="0" lc:HiveGrid.Column="3" />
+                <lc:HiveViewItem Content="26(0,2)"  lc:HiveGrid.Row="0" lc:HiveGrid.Column="2" />
+                <lc:HiveViewItem Content="27(0,1)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="1"  />
+                <lc:HiveViewItem Content="28(0,0)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="0" />
+            </lc:HiveGrid>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="2" Padding="10" Spacing="10">
+            <CheckBox Content="AutoCell" IsChecked="{x:Bind viewModel.Autocell,Mode=TwoWay}"/>
+            <TextBlock Text="Spacing"/>
+            <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.PanelSpacing,Mode=TwoWay}" />
+            <TextBlock Text="RowCount"/>
+            <Slider Minimum="1" Maximum="9"  Value="{x:Bind viewModel.PanelRowCont,Mode=TwoWay}" />
+            <TextBlock Text="ColumnCount"/>
+            <Slider Minimum="1" Maximum="9" Value="{x:Bind viewModel.PanelColCont,Mode=TwoWay}" />
+            <TextBlock Text="FixedEdge"/>
+            <Slider Minimum="0" Maximum="60" Value="{x:Bind viewModel.PanelFixedEdge,Mode=TwoWay}" />
+
+            <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                                    HorizontalSpacing="12" Padding="12,3">
+                <HyperlinkButton Content="HiveGrid" 
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveGrid.cs"/>
+                <HyperlinkButton Content="Sample" 
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/HiveView/HiveGridPage.xaml"/>
+            </controls:WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>

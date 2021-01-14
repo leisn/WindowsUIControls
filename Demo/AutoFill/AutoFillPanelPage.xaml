@@ -1,0 +1,97 @@
+﻿<Page
+    x:Class="Demo.AutoFill.AutoFillPanelPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.AutoFill"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Button">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:GridSplitter Grid.Column="1" 
+                               ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
+                               GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
+                               />
+        <ScrollViewer x:Name="scrollViewer">
+            <lc:AutoFillPanel  Margin="10"
+                         Orientation="{x:Bind viewModel.Orientation,Mode=OneWay}"
+                         HorizontalSpacing="{x:Bind viewModel.HSpacing,Mode=OneWay}"
+                         VerticalSpacing="{x:Bind viewModel.VSpacing,Mode=OneWay}">
+                <Button Content="1" Width="92" Height="92"  Background="Orange"/>
+                <Button Content="2" Width="44" Height="44"  Background="#E71224"/>
+                <Button Content="3" Width="92" Height="44"  Background="#F06000"/>
+                <Button Content="4" Width="44" Height="44"  Background="#004F8B"/>
+                <Button Content="5" Width="44" Height="44"  Background="#008C3A"/>
+                <Button Content="6" Width="92" Height="44"  Background="#F6630D"/>
+                <Button Content="7" Width="92" Height="44"  Background="#C10052"/>
+                <Button Content="8" Width="44" Height="44"  Background="#0069AF"/>
+                <Button Content="9" Width="20" Height="20"  Background="#00B44B"/>
+                <Button Content="10" Width="44" Height="44"  Background="#FFC114"/>
+                <Button Content="11" Width="44" Height="44"  Background="#AB008B"/>
+                <Button Content="12" Width="20" Height="20"  Background="#5B2D90"/>
+                <Button Content="13" Width="92" Height="140"  Background="#7EC400"/>
+                <Button Content="14" Width="44" Height="44"  Background="#C6A377"/>
+                <Button Content="15" Width="44" Height="44"  Background="#D20078"/>
+                <Button Content="16" Width="44" Height="44"  Background="#1EC3B4"/>
+                <Button Content="17" Width="20" Height="20"  Background="#00A0D7"/>
+                <Button Content="18" Width="92" Height="44"  Background="#849398"/>
+                <Button Content="19" Width="44" Height="44"  Background="#007ACC"/>
+                <Button Content="20" Width="20" Height="20"  Background="#323B47"/>
+                <Button Content="21" Width="92" Height="92"  Background="#F06000"/>
+
+                <Button Content="a" Width="20" Height="20"  Background="Orange"/>
+                <Button Content="b" Width="20" Height="20"  Background="#E71224"/>
+                <Button Content="c" Width="20" Height="20"  Background="#F06000"/>
+                <Button Content="d" Width="20" Height="20"  Background="#004F8B"/>
+                <Button Content="e" Width="44" Height="44"  Background="#008C3A"/>
+                <Button Content="f" Width="44" Height="44"  Background="#F06000"/>
+                <Button Content="g" Width="20" Height="20"  Background="#F06000"/>
+                <Button Content="h" Width="20" Height="20"  Background="#F06000"/>
+            </lc:AutoFillPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
+            <TextBlock Text="Orientation"/>
+            <ComboBox ItemsSource="{x:Bind viewModel.Orientations}" HorizontalAlignment="Stretch"
+                      SelectedItem="{x:Bind viewModel.Orientation,Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="Orientation">
+                        <TextBlock Text="{x:Bind}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="Horizontal Spacing"/>
+            <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.HSpacing,Mode=TwoWay}" />
+            <TextBlock Text="Vertical Spacing"/>
+            <Slider Minimum="0" Maximum="30" Value="{x:Bind viewModel.VSpacing,Mode=TwoWay}" />
+
+            <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                                    HorizontalSpacing="12" Padding="12,3">
+                <HyperlinkButton Content="AutoFillPanel" 
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/AutoFill/AutoFillPanel.cs"/>
+                <HyperlinkButton Content="Sample"
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/AutoFill/AutoFillPanelPage.xaml"/>
+
+            </controls:WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>

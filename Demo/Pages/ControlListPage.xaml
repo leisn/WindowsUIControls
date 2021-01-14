@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="Demo.Pages.ControlListPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.Pages"
+    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:models="using:Demo.Models"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="ControlListDataTemplate" x:DataType="models:ControlItem">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Column="1" Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind Title}" Foreground="{ThemeResource SystemAccentColorDark1}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{ThemeResource CaptionTextBlockStyle}"
+                           Text="{x:Bind Desc}" TextWrapping="WrapWholeWords" Foreground="#555"/>
+                <Viewbox  HorizontalAlignment="Left" VerticalAlignment="Top">
+                    <Path Fill="#333" Data="{x:Bind Path}"/>
+                </Viewbox>
+            </Grid>
+        </DataTemplate>
+
+        <Style x:Key="controlListViewItemStyle" TargetType="ListViewItem" 
+               BasedOn="{StaticResource ListViewItemRevealStyle}">
+            <Setter Property="Background" Value="{ThemeResource ListViewItemBackgroundPointerOver}"/>
+            <Setter Property="Padding" Value="12,10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="MinWidth" Value="300"/>
+            <Setter Property="MaxWidth" Value="300"/>
+            <Setter Property="MinHeight" Value="120"/>
+        </Style>
+    </Page.Resources>
+    <Grid>
+        <ListView ItemContainerStyle="{StaticResource controlListViewItemStyle}"
+                  ItemsSource="{x:Bind viewModel.Items}" 
+                  ItemTemplate="{StaticResource ControlListDataTemplate}"
+                  IsItemClickEnabled="True" SelectionMode="None"
+                  ItemClick="ListView_ItemClick">
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <lc:AutoFillPanel HorizontalSpacing="10" VerticalSpacing="10" Padding="10,0"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+        </ListView>
+    </Grid>
+</Page>

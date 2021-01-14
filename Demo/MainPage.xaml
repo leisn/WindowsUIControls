@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="Demo.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d" d:Width="500" d:Height="400"
+    xmlns:hv="using:Demo.HiveView"
+    xmlns:hp="using:Demo.Helpers"
+    xmlns:models="using:Demo.Models"
+    RequestedTheme="{x:Bind settings.Theme,Mode=OneWay}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <DataTemplate x:Key="separator">
+            <muxc:NavigationViewItemSeparator/>
+        </DataTemplate>
+        <DataTemplate x:Key="categories" x:DataType="models:ControlCategorie">
+            <muxc:NavigationViewItem Content="{x:Bind Title}" Tag="{x:Bind Page}"
+                                     MenuItemsSource="{x:Bind Items}">
+                <muxc:NavigationViewItem.Icon>
+                    <FontIcon FontSize="16" FontFamily="{StaticResource SymbolThemeFontFamily}" 
+                                  Glyph="{x:Bind Glyph}"/>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+        </DataTemplate>
+        <DataTemplate x:Key="seconds" x:DataType="models:ControlItem">
+            <muxc:NavigationViewItem Content="{x:Bind Title}" Tag="{x:Bind Page}">
+                <muxc:NavigationViewItem.Icon>
+                    <PathIcon Data="{x:Bind Path}"/>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+        </DataTemplate>
+        <hp:NavMenuItemTemplateSelector x:Key="navMenuSelector"
+                                        SeparatorTemplate="{StaticResource separator}"
+                                        SecondItemTemplate="{StaticResource seconds}"
+                                        MainItemTemplate="{StaticResource categories}"/>
+
+        <DataTemplate x:Key="navHeaderTemplate" x:DataType="models:NavHeader">
+            <StackPanel>
+                <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center"
+                           Style="{ThemeResource TitleTextBlockStyle}"/>
+                <TextBlock Text="{x:Bind Desc}" Margin="10,0,0,0" TextWrapping="WrapWholeWords"
+                           Style="{ThemeResource CaptionTextBlockStyle}"/>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <muxc:NavigationView x:Name="navigationView" IsPaneOpen="True"
+                         PaneDisplayMode="{x:Bind settings.NavigationPosition,Mode=OneWay}"
+                         OpenPaneLength="256"
+                         SelectionChanged="navigationView_SelectionChanged"
+                         BackRequested="navigationView_BackRequested"
+                         IsBackButtonVisible="Auto" 
+                         MenuItemTemplateSelector="{StaticResource navMenuSelector}"
+                         MenuItemsSource="{x:Bind viewModel.Categories}"
+                         HeaderTemplate="{StaticResource navHeaderTemplate}"
+                         PaneTitle="Controls"
+                         >
+        <Grid>
+            <Frame x:Name="contentFrame"
+               Navigated="contentFrame_Navigated"
+               NavigationFailed="contentFrame_NavigationFailed"/>
+        </Grid>
+    </muxc:NavigationView>
+</Page>

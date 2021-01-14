@@ -1,0 +1,46 @@
+﻿[
+    {
+        "Title": "Collections",
+        "Page": "Pages.ControlListPage",
+        "Glyph": "\uF0E2",
+        "Items": [
+            {
+                "Title": "HiveView",
+                "Page": "HiveView.HiveViewPage",
+                "Desc": "A control that presents a collection of items, simple positions child elements as a hive with fixed edge.",
+                "Path": "M5.8,4.3l-1.2,2H2.3l-1.2-2l1.2-2h2.3L5.8,4.3z M9.2,4.8H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,4.8z M13.7,2.3h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,2.3z M4.7,7.3H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,7.3z M9.2,9.8H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,9.8zM13.7,7.3h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,7.3z"
+            },
+            {
+                "Title": "HiveWrapView",
+                "Page": "HiveView.HiveWrapViewPage",
+                "Desc": "A control that base on HiveView, positions child elements in sequential position from left to right, breaking content to next line at the edge of containing box. Also with fixed edge.",
+                "Path": "M14.8,10.5l-1.2,2h-2.3l-1.2-2l1.2-2h2.3L14.8,10.5z M9.2,1H6.8L5.7,3l1.2,2h2.3l1.2-2L9.2,1z M9.2,11H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,11z M4.7,3.5H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,3.5z M4.7,8.5H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,8.5zM9.2,6H6.8L5.7,8l1.2,2h2.3l1.2-2L9.2,6z M13.7,3.5h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,3.5z"
+            },
+            {
+                "Title": "HiveGridView",
+                "Page": "HiveView.HiveGridViewPage",
+                "Desc": "A control that base on HiveView, presents a collection of items in hive rows and columns.",
+                "Path": "M10.3,4.3l-1.2,2H6.8l-1.2-2l1.2-2h2.3L10.3,4.3z M4.7,4.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,4.8z M4.7,9.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,9.8z M9.2,7.3H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,7.3z M13.7,4.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,4.8z M13.7,9.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,9.8z"
+            }
+        ]
+    },
+    {
+        "Title": "Layout",
+        "Page": "Pages.ControlListPage",
+        "Glyph": "\uE8A1",
+        "Items": [
+            {
+                "Title": "AutoFillPanel",
+                "Page": "AutoFill.AutoFillPanelPage",
+                "Desc": "A panel that auto arranging child elements in available area.",
+                "Path": "M8,9H0V2h8V9z M16,2h-3v3h3V2z M12,2H9v3h3V2z M12,6H9v3h3V6z M16,6h-3v3h3V6z M16,10H5v4h11V10z M4,10H0v4h4V10z"
+            },
+            {
+                "Title": "HiveGrid",
+                "Page": "HiveView.HiveGridPage",
+                "Desc": "A panel that arranging child elements in hive rows and columns, with fixed edge or auto size when set FixedEdge to zero.",
+                "Path": "M10.3,4.3l-1.2,2H6.8l-1.2-2l1.2-2h2.3L10.3,4.3z M4.7,4.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,4.8z M4.7,9.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,9.8z M9.2,7.3H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,7.3z M13.7,4.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,4.8z M13.7,9.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,9.8z"
+            }
+        ]
+    }
+]
