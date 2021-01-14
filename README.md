@@ -4,10 +4,10 @@ An windows ui controls library for uwp.
 ## Now Available
 
 ### Collections
-HiveView
-HiveWrapView
-HiveGridView
+* HiveView
+* HiveWrapView
+* HiveGridView
 
 ### Layout
-AutoFillPanel
-HiveGrid
+* AutoFillPanel
+* HiveGrid
