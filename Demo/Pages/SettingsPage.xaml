@@ -40,7 +40,7 @@
                     <LineBreak/>
                     Source code: 
                     <Hyperlink Foreground="{ThemeResource SystemAccentColorDark2}"
-                               NavigateUri="https://github.com/leisn/WindowsUIControls/Demo"
+                               NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo"
                                ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}">
                         GitHub
                     </Hyperlink>

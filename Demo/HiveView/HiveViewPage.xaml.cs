@@ -14,7 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Demo.Helpers;
+using Demo.Models;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Demo.HiveView
@@ -47,5 +48,6 @@ namespace Demo.HiveView
         {
             viewModel.ViewSelected = ($"index = {e.OldIndex}, value = {e.OldValue}  -->  index = {e.NewIndex}, value = {e.NewValue}");
         }
+
     }
 }

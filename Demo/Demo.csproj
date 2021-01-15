@@ -123,6 +123,7 @@
       <DependentUpon>AutoFillPanelPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="AutoFill\AutoFillPanelViewModel.cs" />
+    <Compile Include="Helpers\DoubleCollectionConverter.cs" />
     <Compile Include="Helpers\NavMenuItemTemplateSelector.cs" />
     <Compile Include="Helpers\EnumBoolConverter.cs" />
     <Compile Include="Helpers\VisibleBoolConverter.cs" />
@@ -148,7 +149,6 @@
     <Compile Include="Models\ControlCategorie.cs" />
     <Compile Include="Models\ControlItem.cs" />
     <Compile Include="Models\MenuItemBase.cs" />
-    <Compile Include="Models\NavigationParameter.cs" />
     <Compile Include="Pages\ControlListPage.xaml.cs">
       <DependentUpon>ControlListPage.xaml</DependentUpon>
     </Compile>

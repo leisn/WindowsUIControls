@@ -10,19 +10,23 @@
         <Setter Property="Foreground" Value="{ThemeResource DefaultTextForegroundThemeBrush}"/>
         <Setter Property="TabNavigation" Value="Local"/>
         <Setter Property="IsHoldingEnabled" Value="True"/>
-        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="0"/>
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="MinWidth" Value="10"/>
-        <Setter Property="MinHeight" Value="10"/>
+        <Setter Property="MinWidth" Value="16"/>
+        <Setter Property="MinHeight" Value="16"/>
         <Setter Property="AllowDrop" Value="False"/>
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
         <Setter Property="FocusVisualMargin" Value="0"/>
-        <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{ThemeResource TextControlBorderThemeThickness}"/>
+
+        <Setter Property="StrokeBrush" Value="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+
+        <Setter Property="BorderBrush" Value="{x:Null}"/>
+        <Setter Property="BorderThickness" Value="0"/>
 
         <Setter Property="SelectedForegroundBrush" Value="{ThemeResource ToggleButtonForegroundChecked}"/>
         <Setter Property="SelectedBackgroundBrush" Value="{ThemeResource ToggleButtonBackgroundChecked}"/>
@@ -30,11 +34,24 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HiveViewItem">
+                    <!--<Grid BorderThickness="{TemplateBinding BorderThickness}"
+                          BorderBrush="{TemplateBinding BorderBrush}"
+                          CornerRadius="{TemplateBinding CornerRadius}">-->
                     <Grid>
+                        <!--StrokeDashArray="{TemplateBinding StrokeDashArray}"-->
                         <Polygon x:Name="PART_Polygon"
+                                 Stretch="Fill"
+                                 Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
-                                 Stroke="{TemplateBinding BorderBrush}"
-                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                                 Stroke="{TemplateBinding StrokeBrush}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 StrokeDashCap="{TemplateBinding StrokeDashCap}"
+                                 StrokeDashOffset="{TemplateBinding StrokeDashOffset}"
+                                 StrokeEndLineCap="{TemplateBinding StrokeEndLineCap}"
+                                 StrokeLineJoin="{TemplateBinding StrokeLineJoin}"
+                                 StrokeMiterLimit="{TemplateBinding StrokeMiterLimit}"
+                                 StrokeStartLineCap="{TemplateBinding StrokeStartLineCap}"
+                                 />
                         <ContentPresenter x:Name="PART_Content" 
                                           Foreground="{TemplateBinding Foreground}"
                                           Padding="{TemplateBinding Padding}" 
@@ -122,19 +139,26 @@
     <Style x:Key="HiveWrapViewItemStyle" TargetType="local:HiveViewItem" BasedOn="{StaticResource HiveViewItemStyle}">
         <Setter Property="Background" Value="{ThemeResource ListViewItemBackground}"/>
         <Setter Property="Foreground" Value="{ThemeResource ListViewItemForeground}"/>
-        <Setter Property="Padding" Value="0"/>
-        <Setter Property="BorderBrush" Value="{ThemeResource SystemControlBackgroundChromeMediumRevealBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{ThemeResource ListViewItemRevealBorderThemeThickness}"/>
         <Setter Property="SelectedBackgroundBrush" Value="{ThemeResource ListViewItemBackgroundSelected}"/>
         <Setter Property="SelectedForegroundBrush" Value="{ThemeResource ListViewItemForegroundSelected}"/>
+        
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HiveViewItem">
                     <Grid>
                         <Polygon x:Name="PART_Polygon"
+                                 Stretch="Fill"
+                                 Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
-                                 Stroke="{TemplateBinding BorderBrush}"
-                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                                 Stroke="{TemplateBinding StrokeBrush}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 StrokeDashCap="{TemplateBinding StrokeDashCap}"
+                                 StrokeDashOffset="{TemplateBinding StrokeDashOffset}"
+                                 StrokeEndLineCap="{TemplateBinding StrokeEndLineCap}"
+                                 StrokeLineJoin="{TemplateBinding StrokeLineJoin}"
+                                 StrokeMiterLimit="{TemplateBinding StrokeMiterLimit}"
+                                 StrokeStartLineCap="{TemplateBinding StrokeStartLineCap}"
+                                 />
                         <ContentPresenter x:Name="PART_Content" 
                                           Foreground="{TemplateBinding Foreground}"
                                           Padding="{TemplateBinding Padding}" 
@@ -221,10 +245,10 @@
     <Style x:Key="HiveGridViewItemStyle" TargetType="local:HiveViewItem" BasedOn="{StaticResource HiveViewItemStyle}">
         <Setter Property="Background" Value="{ThemeResource GridViewItemBackground}"/>
         <Setter Property="Foreground" Value="{ThemeResource GridViewItemForeground}"/>
-        <Setter Property="Padding" Value="0"/>
         <Setter Property="FocusVisualMargin" Value="-2"/>
-        <Setter Property="BorderBrush" Value="{ThemeResource GridViewItemRevealBorderBrush}"/>
-        <Setter Property="BorderThickness" Value="{ThemeResource GridViewItemRevealBorderThemeThickness}"/>
+
+        <Setter Property="StrokeBrush" Value="{ThemeResource GridViewItemRevealBorderBrush}"/>
+
         <Setter Property="SelectedBackgroundBrush" Value="{ThemeResource GridViewItemBackgroundSelected}"/>
         <Setter Property="SelectedForegroundBrush" Value="{ThemeResource GridViewItemForegroundSelected}"/>
 
@@ -233,9 +257,18 @@
                 <ControlTemplate TargetType="local:HiveViewItem">
                     <Grid>
                         <Polygon x:Name="PART_Polygon"
+                                 Stretch="Fill"
+                                 Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
-                                 Stroke="{TemplateBinding BorderBrush}"
-                                 StrokeThickness="{TemplateBinding BorderThickness}"/>
+                                 Stroke="{TemplateBinding StrokeBrush}"
+                                 StrokeThickness="{TemplateBinding StrokeThickness}"
+                                 StrokeDashCap="{TemplateBinding StrokeDashCap}"
+                                 StrokeDashOffset="{TemplateBinding StrokeDashOffset}"
+                                 StrokeEndLineCap="{TemplateBinding StrokeEndLineCap}"
+                                 StrokeLineJoin="{TemplateBinding StrokeLineJoin}"
+                                 StrokeMiterLimit="{TemplateBinding StrokeMiterLimit}"
+                                 StrokeStartLineCap="{TemplateBinding StrokeStartLineCap}"
+                                 />
                         <ContentPresenter x:Name="PART_Content" 
                                           Foreground="{TemplateBinding Foreground}"
                                           Padding="{TemplateBinding Padding}" 

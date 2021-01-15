@@ -50,16 +50,16 @@
 
                     <HyperlinkButton Content="HiveView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveView.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveView.cs"/>
                     <HyperlinkButton Content="HivePanel" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HivePanel.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HivePanel.cs"/>
                     <HyperlinkButton Content="HiveViewItem"
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveViewItem.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveViewItem.cs"/>
                     <HyperlinkButton Content="Sample" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/HiveView/HiveViewPage.xaml"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveViewPage.xaml"/>
 
                 </controls:WrapPanel>
             </StackPanel>

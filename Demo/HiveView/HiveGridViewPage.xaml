@@ -55,13 +55,13 @@
                                     HorizontalSpacing="12" Padding="12,3">
                     <HyperlinkButton Content="HiveGridView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveGridView.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveGridView.cs"/>
                     <HyperlinkButton Content="HiveGrid" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/HiveView/HiveGrid.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveGrid.cs"/>
                     <HyperlinkButton Content="Sample"
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/HiveView/HiveGridViewPage.xaml"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveGridViewPage.xaml"/>
                 </controls:WrapPanel>
             </StackPanel>
         </Grid>

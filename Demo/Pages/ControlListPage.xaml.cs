@@ -6,7 +6,6 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 using Demo.Models;
 using Demo.ViewModel;
-
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,22 +26,21 @@ namespace Demo.Pages
     public sealed partial class ControlListPage : Page
     {
         ControlListViewModel viewModel;
-        NavigationParameter navigationParameter;
+
 
         public ControlListPage()
         {
             this.InitializeComponent();
             viewModel = new ControlListViewModel();
 
-            Loaded += OnLoaded;
-            Unloaded += OnUnloaded;
+            this.Loaded += OnLoaded;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            navigationParameter = (NavigationParameter)e.Parameter;
-            viewModel.Categorie = navigationParameter.Content;
             base.OnNavigatedTo(e);
+
+            viewModel.Categorie = (e.Parameter as MenuItemBase)?.Title;
         }
 
         private async void OnLoaded(object sender, RoutedEventArgs e)
@@ -50,15 +48,9 @@ namespace Demo.Pages
             await viewModel.LoadItems();
         }
 
-        private void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            navigationParameter = null;
-        }
-
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var item = e.ClickedItem as ControlItem;
-            navigationParameter.NavigationView.SelectedItem = item;
+            MainPage.Current.NavigateToItem(e.ClickedItem as ControlItem);
         }
     }
 }

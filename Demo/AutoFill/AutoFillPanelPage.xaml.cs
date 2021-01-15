@@ -13,7 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
+using Demo.Models;
+using Demo.Helpers;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Demo.AutoFill
@@ -41,10 +42,5 @@ namespace Demo.AutoFill
             scrollViewer.HorizontalScrollBarVisibility = isVer ? ScrollBarVisibility.Disabled : ScrollBarVisibility.Auto;
         }
 
-        private async void MarkdownTextBlock_LinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
-        {
-            if (Uri.TryCreate(e.Link, UriKind.Absolute, out Uri uri))
-                await Windows.System.Launcher.LaunchUriAsync(uri);
-        }
     }
 }

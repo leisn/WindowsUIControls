@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
+using Demo.Helpers;
 using Demo.Models;
 using Demo.ViewModel;
 
@@ -28,17 +29,27 @@ namespace Demo
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public static MainPage Current { get; private set; }
+
         MainViewModel viewModel;
         AppSettings settings;
+
         public MainPage()
         {
+            Current = this;
             settings = AppSettings.Current;
 
             this.InitializeComponent();
             viewModel = new MainViewModel();
-            
+
             this.Loaded += MainPage_Loaded;
         }
+
+        public void NavigateToItem(MenuItemBase menu)
+        {
+            this.navigationView.SelectedItem = menu;
+        }
+
 
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -59,15 +70,8 @@ namespace Demo
                 {
                     string pageName = "Demo." + selectedItem.Page;
 
-                    var parameter = new NavigationParameter
-                    {
-                        Frame = this.contentFrame,
-                        Content = selectedItem.Title,
-                        NavigationView = navigationView
-                    };
-
                     contentFrame.Navigate(Type.GetType(pageName),
-                        parameter,
+                        selectedItem,
                         args.RecommendedNavigationTransitionInfo);
                 }
             }
@@ -87,17 +91,35 @@ namespace Demo
                 navigationView.Header = new NavHeader { Title = "Settings" };
             else if (contentFrame.SourcePageType != null)
             {
-                var item = navigationView.SelectedItem;
-
                 var header = new NavHeader();
-                if (item is MenuItemBase)
+
+                object item = e.Parameter;
+
+                if (item != null)
                 {
-                    header.Title = (item as MenuItemBase)?.Title;
-                    header.Desc = (item as ControlItem)?.Desc;
+                    var menuItem = item as MenuItemBase;
+                    header.Title = menuItem.Title;
+                    header.Desc = (menuItem as ControlItem)?.Desc;
                 }
                 else
-                    header.Title = ((muxc.NavigationViewItem)navigationView.SelectedItem)?.Content?.ToString();
+                {
+                    item = navigationView.SelectedItem;
+                    header.Title = ((muxc.NavigationViewItem)item)?.Content?.ToString();
+                }
+                   
                 navigationView.Header = header;
+                if (item != navigationView.SelectedItem)
+                {
+                    //just set selected state
+                    var oldItem = navigationView.ContainerFromMenuItem(navigationView.SelectedItem)
+                         as muxc.NavigationViewItem;
+                    if (oldItem != null)
+                        oldItem.IsSelected = false;
+                    var newItem = navigationView.ContainerFromMenuItem(item)
+                             as muxc.NavigationViewItem;
+                    if (newItem != null)
+                        newItem.IsSelected = true;
+                }
             }
         }
 

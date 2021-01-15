@@ -86,10 +86,10 @@
                                     HorizontalSpacing="12" Padding="12,3">
                 <HyperlinkButton Content="AutoFillPanel" 
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Leisn.Uwp.UI.Controls/AutoFill/AutoFillPanel.cs"/>
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/AutoFill/AutoFillPanel.cs"/>
                 <HyperlinkButton Content="Sample"
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                 NavigateUri="https://github.com/leisn/WindowsUIControls/Demo/AutoFill/AutoFillPanelPage.xaml"/>
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/AutoFill/AutoFillPanelPage.xaml"/>
 
             </controls:WrapPanel>
         </StackPanel>

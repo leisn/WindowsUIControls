@@ -52,9 +52,6 @@ namespace Leisn.Uwp.UI.Controls
             isSelectedCallbackToken =
                 RegisterPropertyChangedCallback(IsSelectedProperty, OnItemPropertyChanged);
             RegisterPropertyChangedCallback(IsEnabledProperty, OnItemPropertyChanged);
-            this.Loaded += OnLoaded;
-            this.SizeChanged += OnSizeChanged;
-            this.Unloaded += OnUnloaded;
         }
 
         #region DependencyProperties
@@ -97,9 +94,134 @@ namespace Leisn.Uwp.UI.Controls
                 typeof(Brush),
                 typeof(HiveViewItem),
                 new PropertyMetadata(null));
+
+        #region stroke properties
+        public Brush StrokeBrush
+        {
+            get { return (Brush)GetValue(StrokeBrushProperty); }
+            set { SetValue(StrokeBrushProperty, value); }
+        }
+
+        public static readonly DependencyProperty StrokeBrushProperty =
+            DependencyProperty.Register(
+                nameof(StrokeBrush),
+                typeof(Brush),
+                typeof(HiveViewItem),
+                new PropertyMetadata(null));
+
+        public double StrokeThickness
+        {
+            get { return (double)GetValue(StrokeThicknessProperty); }
+            set { SetValue(StrokeThicknessProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeThicknessProperty =
+            DependencyProperty.Register(
+                nameof(StrokeThickness),
+                typeof(double),
+                typeof(HiveViewItem),
+                new PropertyMetadata(1));
+        public double StrokeMiterLimit
+        {
+            get { return (double)GetValue(StrokeMiterLimitProperty); }
+            set { SetValue(StrokeMiterLimitProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeMiterLimitProperty =
+            DependencyProperty.Register(
+                nameof(StrokeMiterLimit),
+                typeof(double),
+                typeof(HiveViewItem),
+                new PropertyMetadata(10));
+        public double StrokeDashOffset
+        {
+            get { return (double)GetValue(StrokeDashOffsetProperty); }
+            set { SetValue(StrokeDashOffsetProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeDashOffsetProperty =
+            DependencyProperty.Register(
+                nameof(StrokeDashOffset),
+                typeof(double),
+                typeof(HiveViewItem),
+                new PropertyMetadata(0));
+        public DoubleCollection StrokeDashArray
+        {
+            get { return (DoubleCollection)GetValue(StrokeDashArrayProperty); }
+            set { SetValue(StrokeDashArrayProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeDashArrayProperty =
+           DependencyProperty.Register(
+               nameof(StrokeDashArray),
+               typeof(DoubleCollection),
+               typeof(HiveViewItem),
+               new PropertyMetadata(null, HiveViewItemPropertyChanged));
+
+        public PenLineCap StrokeStartLineCap
+        {
+            get { return (PenLineCap)GetValue(StrokeStartLineCapProperty); }
+            set { SetValue(StrokeStartLineCapProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeStartLineCapProperty =
+           DependencyProperty.Register(
+               nameof(StrokeStartLineCap),
+               typeof(PenLineCap),
+               typeof(HiveViewItem),
+               new PropertyMetadata(PenLineCap.Flat));
+
+        public PenLineCap StrokeEndLineCap
+        {
+            get { return (PenLineCap)GetValue(StrokeEndLineCapProperty); }
+            set { SetValue(StrokeEndLineCapProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeEndLineCapProperty =
+           DependencyProperty.Register(
+               nameof(StrokeEndLineCap),
+               typeof(PenLineCap),
+               typeof(HiveViewItem),
+               new PropertyMetadata(PenLineCap.Flat));
+
+        public PenLineCap StrokeDashCap
+        {
+            get { return (PenLineCap)GetValue(StrokeDashCapProperty); }
+            set { SetValue(StrokeDashCapProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeDashCapProperty =
+           DependencyProperty.Register(
+               nameof(StrokeDashCap),
+               typeof(PenLineCap),
+               typeof(HiveViewItem),
+               new PropertyMetadata(PenLineCap.Flat));
+        public PenLineJoin StrokeLineJoin
+        {
+            get { return (PenLineJoin)GetValue(StrokeLineJoinProperty); }
+            set { SetValue(StrokeLineJoinProperty, value); }
+        }
+        public static readonly DependencyProperty StrokeLineJoinProperty =
+           DependencyProperty.Register(
+               nameof(StrokeLineJoin),
+               typeof(PenLineJoin),
+               typeof(HiveViewItem),
+               new PropertyMetadata(PenLineJoin.Miter));
         #endregion
 
-        private void OnItemPropertyChanged(DependencyObject sender, DependencyProperty dp)
+        #endregion
+        protected static void HiveViewItemPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var view = (HiveViewItem)d;
+            if (e.Property == StrokeDashArrayProperty)
+            {
+                var dc = (DoubleCollection)e.NewValue;
+                if (view.polygon != null)
+                {
+                    var dashArray = view.polygon.StrokeDashArray;
+                    dashArray.Clear();
+                    if (dc != null)
+                    {
+                        foreach (var dv in dc)
+                            dashArray.Add(dv);
+                    }
+                }
+            }
+        }
+        protected void OnItemPropertyChanged(DependencyObject sender, DependencyProperty dp)
         {
             var view = sender as HiveViewItem;
             if (dp == IsSelectedProperty)
@@ -143,60 +265,50 @@ namespace Leisn.Uwp.UI.Controls
         {
             var size = base.MeasureOverride(availableSize);
             if (content != null)
+            {
+                content.Measure(availableSize);
                 return content.DesiredSize;
+            }
             return size;
         }
 
-        protected virtual void OnUnloaded(object sender, RoutedEventArgs e)
-        {
-            this.SizeChanged -= OnSizeChanged;
-            this.Loaded -= OnLoaded;
-            this.Unloaded -= OnUnloaded;
-        }
+        #region Deprecated justify polygon size
+        //protected override Size ArrangeOverride(Size finalSize)
+        //{
+        //updatePolygon(finalSize);
+        //    return base.ArrangeOverride(finalSize);
+        //}
 
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            var width = this.ActualWidth;
-            var height = this.ActualHeight;
-            updatePolygon(width, height);
-        }
+        //private void updatePolygon(Size arrangeSize)
+        //{
+        //    var width = arrangeSize.Width;
+        //    var height = arrangeSize.Height;
 
-        private void updatePolygon(double width, double height)
-        {
-            var points = new PointCollection();
-            points.Add(new Point(0, height / 2));
-            points.Add(new Point(width / 4, 0));
-            points.Add(new Point(width * 3 / 4, 0));
-            points.Add(new Point(width, height / 2));
-            points.Add(new Point(width * 3 / 4, height));
-            points.Add(new Point(width / 4, height));
-            this.polygon.Points = points;
-        }
+        //    var points = polygon.Points;
+        //    double x0 = 0, x1 = 0, y0 = 0, y1 = 0;
+        //    foreach (var item in points)
+        //    {
+        //        x0 = Math.Min(x0, item.X);
+        //        y0 = Math.Min(y0, item.Y);
+        //        x1 = Math.Max(x1, item.X);
+        //        y1 = Math.Max(y1, item.Y);
+        //    }
+        //    var polygonWidth = x1 - x0;
+        //    var polygonHeight = y1 - y0;
 
-        private Size getPolygonSize()
-        {
-            var points = polygon.Points;
-            double x0 = 0, x1 = 0, y0 = 0, y1 = 0;
-            foreach (var item in points)
-            {
-                x0 = Math.Min(x0, item.X);
-                y0 = Math.Min(y0, item.Y);
-                x1 = Math.Max(x1, item.X);
-                y1 = Math.Max(y1, item.Y);
-            }
-            return new Size(x1 - x0, y1 - y0);
-        }
-        protected virtual void OnSizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (!IsLoaded)
-                return;
-            var width = this.ActualWidth;
-            var height = this.ActualHeight;
-            var size = getPolygonSize();
+        //    if (Math.Abs(width - polygonWidth) < StrokeThickness
+        //        && Math.Abs(height - polygonHeight) < StrokeThickness)
+        //        return;
 
-            if (Math.Abs(width - size.Width) > 1 || Math.Abs(height - size.Height) > 1)
-                updatePolygon(width, height);
-        }
+        //    points.Clear();
+        //    points.Add(new Point(0, height / 2));
+        //    points.Add(new Point(width / 4, 0));
+        //    points.Add(new Point(width * 3 / 4, 0));
+        //    points.Add(new Point(width, height / 2));
+        //    points.Add(new Point(width * 3 / 4, height));
+        //    points.Add(new Point(width / 4, height));
+        //}
+        #endregion
 
         #region states
         /// <inheritdoc/>
