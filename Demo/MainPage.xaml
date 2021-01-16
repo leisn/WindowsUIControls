@@ -8,6 +8,7 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d" d:Width="500" d:Height="400"
     xmlns:hv="using:Demo.HiveView"
+    xmlns:dp="using:Demo.Pages"
     xmlns:hp="using:Demo.Helpers"
     xmlns:models="using:Demo.Models"
     RequestedTheme="{x:Bind settings.Theme,Mode=OneWay}"
@@ -62,7 +63,11 @@
         <Grid>
             <Frame x:Name="contentFrame"
                Navigated="contentFrame_Navigated"
-               NavigationFailed="contentFrame_NavigationFailed"/>
+               NavigationFailed="contentFrame_NavigationFailed">
+                <Frame.Content>
+                    <dp:StartPage/>
+                </Frame.Content>
+            </Frame>
         </Grid>
     </muxc:NavigationView>
 </Page>

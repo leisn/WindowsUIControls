@@ -121,8 +121,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AutoFill\AutoFillPanel.cs" />
+    <Compile Include="Converters\ColorHexToSolidBrushConverter.cs" />
     <Compile Include="EventArgs\SelectorStateChangedEventArgs.cs" />
     <Compile Include="EventArgs\SingleSelectionChangedEventArgs.cs" />
+    <Compile Include="Extensions\ColorConverter.cs" />
     <Compile Include="Extensions\RectClip.cs" />
     <Compile Include="Extensions\RectClips.cs" />
     <Compile Include="Extensions\Rects.cs" />
@@ -152,9 +154,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Styles\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
