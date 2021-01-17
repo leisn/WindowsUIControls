@@ -33,7 +33,13 @@
                 "Title": "AutoFillPanel",
                 "Page": "AutoFill.AutoFillPanelPage",
                 "Desc": "A panel that auto arranging child elements in available area.",
-                "Path": "M8,9H0V2h8V9z M16,2h-3v3h3V2z M12,2H9v3h3V2z M12,6H9v3h3V6z M16,6h-3v3h3V6z M16,10H5v4h11V10z M4,10H0v4h4V10z"
+                "Path": "M8,9H0V2h8V9z M16,2h-3v3h3V2z M12,2H9v3h3V2z M12,6H9v3h3V6z M16,6h-3v3h3V6z M16,10H5v4h11V10z M4,10H0v4h4"
+            },
+            {
+                "Title": "AutoFillLayout",
+                "Page": "AutoFill.AutoFillLayoutPage",
+                "Desc": "A layout inherited from VirtualizingLayout that auto arranging child elements in available area.",
+                "Path": "M8,9H0V2h8V9z M16,2h-3v3h3V2z M12,2H9v3h3V2z M12,6H9v3h3V6z M16,6h-3v3h3V6z M16,10H5v4h11V10z M4,10H0v4h4V10zV10z M16,0h-2v1h2V0z M12,0H9v1h3V0z M7,0H4v1h3V0z M2,0H0v1h2V0z M16,15h-2v1h2V15z M12,15H9v1h3V15z M7,15H4v1h3V15z M2,15H0v1h2 V15z"
             },
             {
                 "Title": "HiveGrid",

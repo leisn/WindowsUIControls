@@ -1,0 +1,83 @@
+﻿<Page
+    x:Class="Demo.AutoFill.AutoFillLayoutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.AutoFill"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.Resources>
+            <Style x:Key="buttonStyle" TargetType="Button">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Top"/>
+                <Setter Property="Foreground" Value="White"/>
+            </Style>
+            <DataTemplate x:Key="dataTemplate">
+                <Border Width="{Binding Width,Mode=OneTime}" Height="{Binding Height,Mode=OneTime}">
+                    <Border.Background>
+                        <SolidColorBrush Color="{Binding Color,Mode=OneTime}"/>
+                    </Border.Background>
+                    <TextBlock Margin="5,2" Text="{Binding Index,Mode=OneTime}"/>
+                </Border>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="16"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+
+        <controls:GridSplitter Grid.Column="1" 
+                               ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
+                               GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"/>
+
+        <winui:ItemsRepeaterScrollHost>
+            <ScrollViewer x:Name="scrollViewer">
+                <winui:ItemsRepeater x:Name="itemRepeater" 
+                                     ItemsSource="{x:Bind viewModel.Items}"
+                                     ItemTemplate="{StaticResource dataTemplate}">
+                    <winui:ItemsRepeater.Layout>
+                        <lc:AutoFillLayout Padding="10"
+                            HorizontalSpacing="{x:Bind viewModel.HSpacing,Mode=OneWay}"
+                                           VerticalSpacing="{x:Bind viewModel.VSpacing,Mode=OneWay}"
+                                           Orientation="{x:Bind viewModel.Orientation,Mode=OneWay}"/>
+                    </winui:ItemsRepeater.Layout>
+                </winui:ItemsRepeater>
+            </ScrollViewer>
+        </winui:ItemsRepeaterScrollHost>
+
+        <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
+            <TextBlock Text="Orientation"/>
+            <ComboBox ItemsSource="{x:Bind viewModel.Orientations}" HorizontalAlignment="Stretch"
+                      SelectedItem="{x:Bind viewModel.Orientation,Mode=TwoWay}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate x:DataType="Orientation">
+                        <TextBlock Text="{x:Bind}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <TextBlock Text="Horizontal Spacing"/>
+            <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.HSpacing,Mode=TwoWay}" />
+            <TextBlock Text="Vertical Spacing"/>
+            <Slider Minimum="0" Maximum="30" Value="{x:Bind viewModel.VSpacing,Mode=TwoWay}" />
+
+            <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                                    HorizontalSpacing="12" Padding="12,3">
+                <HyperlinkButton Content="AutoFillLayout" 
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/AutoFill/AutoFillLayout.cs"/>
+                <HyperlinkButton Content="Sample"
+                                 ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/AutoFill/AutoFillLayoutPage.xaml"/>
+
+            </controls:WrapPanel>
+        </StackPanel>
+    </Grid>
+</Page>

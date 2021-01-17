@@ -7,10 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d" d:Width="500" d:Height="400"
-    xmlns:hv="using:Demo.HiveView"
-    xmlns:dp="using:Demo.Pages"
     xmlns:hp="using:Demo.Helpers"
     xmlns:models="using:Demo.Models"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     RequestedTheme="{x:Bind settings.Theme,Mode=OneWay}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -43,8 +42,13 @@
             <StackPanel>
                 <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center"
                            Style="{ThemeResource TitleTextBlockStyle}"/>
-                <TextBlock Text="{x:Bind Desc}" Margin="10,0,0,0" TextWrapping="WrapWholeWords"
-                           Style="{ThemeResource CaptionTextBlockStyle}"/>
+                <controls:MarkdownTextBlock Margin="0,3,0,0" Padding="15,7,0,5" 
+                                            TextWrapping="WrapWholeWords"
+                                            LinkClicked="MarkdownTextBlock_LinkClicked"
+                                            Text="{x:Bind Desc}" FontSize="13" FontStretch="Normal"
+                                            CodeFontFamily="Consolas" FontWeight="Normal"
+                                            UriPrefix="https://github.com/leisn/WindowsUIControls/tree/master/"
+                                            LinkForeground="{ThemeResource SystemAccentColorDark2}" />
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -60,14 +64,9 @@
                          HeaderTemplate="{StaticResource navHeaderTemplate}"
                          PaneTitle="Controls"
                          >
-        <Grid>
-            <Frame x:Name="contentFrame"
+        <Frame x:Name="contentFrame"
                Navigated="contentFrame_Navigated"
-               NavigationFailed="contentFrame_NavigationFailed">
-                <Frame.Content>
-                    <dp:StartPage/>
-                </Frame.Content>
-            </Frame>
-        </Grid>
+               NavigationFailed="contentFrame_NavigationFailed"/>
+
     </muxc:NavigationView>
 </Page>

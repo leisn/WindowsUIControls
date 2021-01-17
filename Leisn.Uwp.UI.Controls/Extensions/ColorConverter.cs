@@ -5,7 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Windows.UI
+using Windows.UI;
+
+namespace Leisn.Uwp.UI.Extensions
 {
     public static class ColorConverter
     {

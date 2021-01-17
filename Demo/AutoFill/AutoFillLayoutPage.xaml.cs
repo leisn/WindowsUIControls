@@ -13,8 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Demo.Models;
-using Demo.Helpers;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Demo.AutoFill
@@ -22,15 +21,20 @@ namespace Demo.AutoFill
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class AutoFillPanelPage : Page
+    public sealed partial class AutoFillLayoutPage : Page
     {
         AutoFillViewModel viewModel;
-        public AutoFillPanelPage()
+        public AutoFillLayoutPage()
         {
             this.InitializeComponent();
-
             viewModel = new AutoFillViewModel();
             viewModel.OnOrientaionChanged += ViewModel_OnOrientaionChanged;
+            this.Loaded += AutoFillLayoutPage_Loaded;
+        }
+
+        private async void AutoFillLayoutPage_Loaded(object sender, RoutedEventArgs e)
+        {
+            await viewModel.LoadItems();
         }
 
         private void ViewModel_OnOrientaionChanged(Orientation ori)
@@ -41,6 +45,7 @@ namespace Demo.AutoFill
             scrollViewer.HorizontalScrollMode = isVer ? ScrollMode.Disabled : ScrollMode.Enabled;
             scrollViewer.HorizontalScrollBarVisibility = isVer ? ScrollBarVisibility.Disabled : ScrollBarVisibility.Auto;
         }
+
 
     }
 }

@@ -8,7 +8,7 @@
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Demo</RootNamespace>
-    <AssemblyName>Demo</AssemblyName>
+    <AssemblyName>lui.Demo</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
@@ -119,10 +119,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AutoFill\AutoFillLayoutPage.xaml.cs">
+      <DependentUpon>AutoFillLayoutPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AutoFill\AutoFillPanelPage.xaml.cs">
       <DependentUpon>AutoFillPanelPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AutoFill\AutoFillPanelViewModel.cs" />
+    <Compile Include="AutoFill\AutoFillViewModel.cs" />
     <Compile Include="Helpers\DoubleCollectionConverter.cs" />
     <Compile Include="Helpers\NavMenuItemTemplateSelector.cs" />
     <Compile Include="Helpers\EnumBoolConverter.cs" />
@@ -186,6 +189,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="AutoFill\AutoFillLayoutPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AutoFill\AutoFillPanelPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -228,6 +235,9 @@
       <Version>6.2.10</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.Layout">
       <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">

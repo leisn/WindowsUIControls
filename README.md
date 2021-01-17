@@ -10,7 +10,7 @@ An windows ui controls library for uwp.
 
 ### Layout
 * AutoFillPanel
-
+* AutoFillLayout (VirtualizingLayout)
 * HiveGrid
 
 ### Screenshot

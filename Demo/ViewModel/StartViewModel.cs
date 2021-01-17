@@ -58,7 +58,7 @@ namespace Demo.ViewModel
             }
         }
 
-        public async Task<List<Size>> RandomItems()
+        async Task<List<Size>> RandomItems()
         {
             return await Task.Run(() =>
             {

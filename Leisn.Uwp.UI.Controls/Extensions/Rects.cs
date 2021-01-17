@@ -11,10 +11,22 @@ namespace Leisn.Uwp.UI.Extensions
 {
     public static class Rects
     {
+        public static bool IsEmpty(this Rect self)
+        {
+            return self.IsEmpty || self.Width == 0 || self.Height == 0;
+        }
+
+        public static Size Size(this Rect self)
+        {
+            return new Size(self.Width, self.Height);
+        }
+
+
         public static bool Contains(this Rect self, Size size)
         {
             return !(size.Width > self.Width || size.Height > self.Height);
         }
+
 
         public static bool Contains(this Rect self, Rect rect)
         {
@@ -25,6 +37,46 @@ namespace Leisn.Uwp.UI.Extensions
         public static bool IsIntersect(this Rect self, Rect rect)
         {
             return !(self.Right < rect.Left || self.Left > rect.Right || self.Bottom < rect.Top || self.Top > rect.Bottom);
+        }
+
+        public static bool TryMerge(this Rect self, Rect rect, out Rect Target)
+        {
+            bool merged = false;
+            if (self.Contains(rect))
+            {
+                Target = self;
+                merged = true;
+            }
+            else if (rect.Contains(self))
+            {
+                Target = rect;
+                merged = true;
+            }
+            else if (self.IsIntersect(rect))
+            {
+                if (self.Top == rect.Top && self.Bottom == rect.Bottom)
+                {
+                    var left = Math.Min(self.Left, rect.Left);
+                    var right = Math.Max(self.Right, rect.Right);
+                    Target = new Rect(left, self.Top, right - left, self.Height);
+                    merged = true;
+                }
+                else if (self.Left == rect.Left && self.Right == rect.Right)
+                {
+                    var top = Math.Min(self.Top, rect.Top);
+                    var bottom = Math.Max(self.Bottom, rect.Bottom);
+                    Target = new Rect(self.Left, top, self.Width, bottom - top);
+                    merged = true;
+                }
+            }
+            return merged;
+        }
+
+        public static (bool Merged, Rect Target) Merge(this Rect self, Rect rect)
+        {
+            if (self.TryMerge(rect, out Rect target))
+                return (true, target);
+            return (false, default);
         }
 
         public static (bool Overlap, Rect Clip) ClipOverlap(this Rect self, Rect rect)
@@ -72,7 +124,7 @@ namespace Leisn.Uwp.UI.Extensions
         }
 
         public static Rect GetOutBounds(this Rect[,] rects) => getOutBounds(rects);
-        public static Rect GetOutBounds(this IEnumerable<Rect> rects) =>getOutBounds(rects);
+        public static Rect GetOutBounds(this IEnumerable<Rect> rects) => getOutBounds(rects);
 
         public static (Rect Target, Rect? ClipRight, Rect? ClipBottom) Clip(this Rect self, Size size)
         {

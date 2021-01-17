@@ -54,6 +54,7 @@ namespace Demo
         private async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
             await viewModel.LoadItems();
+            contentFrame.Navigate(typeof(Pages.StartPage));
         }
 
         private void navigationView_SelectionChanged(muxc.NavigationView sender, muxc.NavigationViewSelectionChangedEventArgs args)
@@ -89,6 +90,15 @@ namespace Demo
             navigationView.IsBackEnabled = contentFrame.CanGoBack;
             if (contentFrame.SourcePageType == typeof(Pages.SettingsPage))
                 navigationView.Header = new NavHeader { Title = "Settings" };
+            else if (contentFrame.SourcePageType == typeof(Pages.StartPage))
+            {
+                navigationView.Header =
+                    new NavHeader
+                    {
+                        Title = "Start",
+                        Desc = "This is a [AutoFillPanel](#AutoFill.AutoFillPanelPage) use AcrylicBrush as background."
+                    };
+            }
             else if (contentFrame.SourcePageType != null)
             {
                 var header = new NavHeader();
@@ -106,7 +116,7 @@ namespace Demo
                     item = navigationView.SelectedItem;
                     header.Title = ((muxc.NavigationViewItem)item)?.Content?.ToString();
                 }
-                   
+
                 navigationView.Header = header;
                 if (item != navigationView.SelectedItem)
                 {
@@ -132,6 +142,37 @@ namespace Demo
                 Content = "Failed to load Page " + e.SourcePageType.FullName + ". " + Environment.NewLine + e.Exception.ToString()
             };
             await dialog.ShowAsync();
+        }
+
+        private async void MarkdownTextBlock_LinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
+        {
+            if (e.Link.StartsWith("#"))
+            {
+                var link = e.Link.Substring(1, e.Link.Length - 1);
+                foreach (var ca in viewModel.Categories)
+                {
+                    if (ca.Page == link)
+                    {
+                        navigationView.SelectedItem = ca;
+                        return;
+                    }
+                    foreach (var item in ca.Items)
+                    {
+                        if (item.Page == link)
+                        {
+                            navigationView.SelectedItem = item;
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                var markdown = sender as Microsoft.Toolkit.Uwp.UI.Controls.MarkdownTextBlock;
+                if (Uri.TryCreate(markdown.UriPrefix + e.Link, UriKind.Absolute, out Uri link))
+                    await Windows.System.Launcher.LaunchUriAsync(link);
+            }
+           
         }
     }
 }

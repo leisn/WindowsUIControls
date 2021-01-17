@@ -13,7 +13,7 @@
 
     <Page.Resources>
         <media:AcrylicBrush x:Key="backgroundBrush" BackgroundSource="HostBackdrop"
-                            TintOpacity="0" TintLuminosityOpacity="0"
+                            TintOpacity="0.1" TintLuminosityOpacity="0.1"
                             TintColor="{ThemeResource SystemAccentColorLight3}" 
                             FallbackColor="{ThemeResource SystemAccentColorLight3}"/>
         <Style x:Key="containerStyle" TargetType="GridViewItem" 

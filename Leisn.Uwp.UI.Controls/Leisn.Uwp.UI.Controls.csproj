@@ -120,6 +120,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AutoFill\AutoFillItem.cs" />
+    <Compile Include="AutoFill\AutoFillLayout.cs" />
+    <Compile Include="AutoFill\AutoFillLayoutState.cs" />
     <Compile Include="AutoFill\AutoFillPanel.cs" />
     <Compile Include="Converters\ColorHexToSolidBrushConverter.cs" />
     <Compile Include="EventArgs\SelectorStateChangedEventArgs.cs" />
@@ -142,6 +145,9 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.10</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.UI.Xaml">
+      <Version>2.5.0</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

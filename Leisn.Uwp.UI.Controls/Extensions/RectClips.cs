@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,36 +40,82 @@ namespace Leisn.Uwp.UI.Extensions
         public bool Add(Rect item)
         {
             int index = list.IndexOf(item);
-            if (index == -1)
-                list.Add(item);
-            else
-                list[index] = item;
-            return true;
-        }
-
-        public void RemoveAt(int index)
-        {
-            list.RemoveAt(index);
-        }
-
-        public bool UnionItem(Rect item, bool ignoreEmpty = true)
-        {
-            if (ignoreEmpty && item.IsEmpty)
+            if (index != -1)
                 return false;
-            for (int i = 0; i < Count; i++)
-            {
-                var rect = list[i];
-                if (rect.Contains(item))
-                    return false;
-                if (item.Contains(rect))
-                {
-                    list[i] = item;
-                    return true;
-                }
-            }
             list.Add(item);
             return true;
         }
+
+        public void Add(params Rect[] items) => AddAll(items, false);
+
+        public void AddIfNotEmpty(params Rect[] items) => AddAll(items, true);
+
+        public void AddAll(IEnumerable<Rect> items, bool ignoreEmpty = true)
+        {
+            foreach (var item in items)
+                if (!(ignoreEmpty && item.IsEmpty()))
+                    Add(item);
+        }
+
+        public bool MergeItem(params Rect[] items) => MergeItems(items);
+
+        /// <summary>
+        /// 添加对象，后对集合中每一项尝试合并为更大的矩形，
+        /// 直到当前集合内容不能再合并
+        /// </summary>
+        /// <returns> 只添加返回true，合并false</returns>
+        public bool MergeItems(IEnumerable<Rect> items)
+        {
+            AddAll(items, true);
+            var oldCount = Count;
+            int newCount = MergeEachOthers();
+            return newCount == oldCount;
+        }
+
+        /// <summary>
+        /// 整理合并集合中所有项,使每一项不能再互相合并
+        /// </summary>
+        /// <returns>当前集合的项总数</returns>
+        public int MergeEachOthers()
+        {
+            for (int i = Count - 1; i > 0; i--)
+            {
+                bool merged = false;
+                for (int j = i - 1; j >= 0; j--)
+                {
+                    if (list[j].TryMerge(list[i], out Rect target))
+                    {
+                        list[j] = target;
+                        merged = true;
+                    }
+                }
+                if (merged)//被合并就没有必要存在了
+                    list.RemoveAt(i);
+            }
+            return Count;
+        }
+
+        /// <summary>
+        /// 对集合中所有项进行剪切，排除剪切区域，合并其他区域到集合
+        /// </summary>
+        public void CutThenMergeOthers(Rect target, params Rect[] attachedItems)
+        {
+            for (int i = Count - 1; i >= 0; i--)
+            {
+                var x = list[i].Clip(target);
+                if (x.Clipped)
+                {
+                    list.RemoveAt(i);
+                    AddIfNotEmpty(x.ClipResult.Clips);
+                }
+            }
+            AddIfNotEmpty(attachedItems);
+            MergeEachOthers();
+        }
+
+
+        public void RemoveAt(int index) => list.RemoveAt(index);
+
 
         public void Sort(Comparison<Rect> comparison)
         {

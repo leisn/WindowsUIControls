@@ -111,10 +111,10 @@ namespace Leisn.Uwp.UI.Controls
             if (Children.Count < 1) return requiredSize;
 
             if (Orientation == Orientation.Horizontal)
-                availableRects.UnionItem(new Rect(Padding.Left, Padding.Top,
+                availableRects.MergeItem(new Rect(Padding.Left, Padding.Top,
                  clientSize.Width + HorizontalSpacing, double.PositiveInfinity));
             else
-                availableRects.UnionItem(new Rect(Padding.Left, Padding.Top,
+                availableRects.MergeItem(new Rect(Padding.Left, Padding.Top,
                    double.PositiveInfinity, clientSize.Height + VerticalSpacing));
 
             foreach (var child in Children)
@@ -131,10 +131,9 @@ namespace Leisn.Uwp.UI.Controls
 
                 availableRects.RemoveAt(index);
 
-                clipAfterArrange(target);
-
-                availableRects.UnionItem(clipRight.GetValueOrDefault());
-                availableRects.UnionItem(clipBottom.GetValueOrDefault());
+                availableRects.CutThenMergeOthers(target,
+                     clipRight.GetValueOrDefault(),
+                     clipBottom.GetValueOrDefault());
 
                 target.Width -= HorizontalSpacing;
                 target.Height -= VerticalSpacing;
@@ -154,27 +153,10 @@ namespace Leisn.Uwp.UI.Controls
             return requiredSize;
         }
 
-        private void clipAfterArrange(Rect arrange)
-        {
-            for (int i = availableRects.Count - 1; i >= 0; i--)
-            {
-                var x = availableRects[i].Clip(arrange);
-                if (x.Clipped)
-                {
-                    availableRects.RemoveAt(i);
-                    var clips = x.ClipResult.Clips;
-                    foreach (var item in clips)
-                    {
-                        availableRects.UnionItem(item);
-                    }
-                }
-            }
-        }
-
         protected override Size ArrangeOverride(Size finalSize)
         {
             int count = Children.Count;
-            Debug.Assert(arrageRects.Count == count);
+            //Debug.Assert(arrageRects.Count == count);
 
             for (int i = 0; i < count; i++)
             {
