@@ -17,6 +17,7 @@ using System.Diagnostics;
 
 namespace Leisn.Uwp.UI.Controls
 {
+    [TemplatePart(Name = "RootGrid", Type = typeof(Polygon))]
     [TemplatePart(Name = "PART_Polygon", Type = typeof(Polygon))]
     [TemplatePart(Name = "PART_Content", Type = typeof(ContentPresenter))]
     [TemplateVisualState(GroupName = "CommonStates", Name = "Normal")]
@@ -263,13 +264,24 @@ namespace Leisn.Uwp.UI.Controls
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var size = base.MeasureOverride(availableSize);
+            Size requestSize = availableSize;
             if (content != null)
             {
                 content.Measure(availableSize);
-                return content.DesiredSize;
+                var contentSize = content.DesiredSize;
+                var polygonEdge = contentSize.Height / 2 / Math.Tan(Math.PI * 60 / 180)
+                    + contentSize.Width / 2;
+                requestSize = new Size(
+                    HivePanel.GetWidthFromEdge(polygonEdge),
+                    HivePanel.GetHeightFromEdge(polygonEdge));
+                if (requestSize.Height < contentSize.Height)
+                {
+                    requestSize.Height = contentSize.Height;
+                    requestSize.Width = HivePanel.GetWidthFromHeight(contentSize.Height);
+                }
             }
-            return size;
+            base.MeasureOverride(requestSize);
+            return requestSize;//make sure it's our requestSize
         }
 
         #region Deprecated justify polygon size
