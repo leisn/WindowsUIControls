@@ -102,8 +102,10 @@ namespace Demo.AutoFill
                         Index = i,
                         Width = size.Width,
                         Height = size.Height,
-                        Color = Color.FromArgb(255, (byte)random.Next(0, 255),
-                        (byte)random.Next(0, 255), (byte)random.Next(0, 255))
+                        //Width=random.Next(50,300),
+                        //Height=random.Next(50,300),
+                        Color = Color.FromArgb(255, (byte)random.Next(3, 253),
+                        (byte)random.Next(3, 253), (byte)random.Next(3, 253))
                     };
                     items.Add(item);
                 }

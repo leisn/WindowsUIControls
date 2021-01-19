@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:hp="using:Demo.Helpers"
-     xmlns:lc="using:Leisn.Uwp.UI.Controls"
+     xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -242,7 +242,7 @@
                                     Margin="0,5,0,10">
                     <HyperlinkButton Content="HiveGrid" 
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveGrid.cs"/>
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveGrid.cs"/>
                     <HyperlinkButton Content="Sample" 
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                  NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveGridPage.xaml"/>

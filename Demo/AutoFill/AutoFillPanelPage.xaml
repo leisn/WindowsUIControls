@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -86,7 +86,7 @@
                                     HorizontalSpacing="12" Padding="12,3">
                 <HyperlinkButton Content="AutoFillPanel" 
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/AutoFill/AutoFillPanel.cs"/>
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/AutoFill/AutoFillPanel.cs"/>
                 <HyperlinkButton Content="Sample"
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                  NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/AutoFill/AutoFillPanelPage.xaml"/>

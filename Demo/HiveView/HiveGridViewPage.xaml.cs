@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Demo.Helpers;
 using Demo.Models;
+using Leisn.UI.Xaml.Controls;
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Demo.HiveView
@@ -34,10 +35,12 @@ namespace Demo.HiveView
 
         private async void HiveGridViewPage_Loaded(object sender, RoutedEventArgs e)
         {
+            var panel = this.hiveGridView.ItemsPanelRoot as HiveGrid;
+            panel.DataContext = viewModel;
             await viewModel.LoadItems();
         }
 
-        private void hiveGridView_SelectionChanged(object sender, Leisn.Uwp.UI.Controls.SingleSelectionChangedEventArgs e)
+        private void hiveGridView_SelectionChanged(object sender, Leisn.UI.Xaml.Controls.SingleSelectionChangedEventArgs e)
         {
             viewModel.Selection = ($"index = {e.OldIndex}, value = {e.OldValue}  -->  index = {e.NewIndex}, value = {e.NewValue}");
         }

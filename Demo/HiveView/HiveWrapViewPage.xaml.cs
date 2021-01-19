@@ -7,7 +7,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 using Demo.Models;
 
-using Leisn.Uwp.UI.Controls;
+using Leisn.UI.Xaml.Controls;
 
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -35,11 +35,25 @@ namespace Demo.HiveView
         {
             this.InitializeComponent();
             viewModel = new HiveWrapViewModel();
+            viewModel.OnOrientaionChanged += ViewModel_OnOrientaionChanged;
             this.Loaded += HiveViewDemoPage_Loaded;
+
+        }
+        private void ViewModel_OnOrientaionChanged(Orientation ori)
+        {
+            bool isVer = ori == Orientation.Horizontal;
+            this.hiveWrapView.SetValue(ScrollViewer.VerticalScrollModeProperty, isVer ? ScrollMode.Enabled : ScrollMode.Disabled);
+            this.hiveWrapView.SetValue(ScrollViewer.VerticalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Auto : ScrollBarVisibility.Disabled);
+            this.hiveWrapView.SetValue(ScrollViewer.HorizontalScrollModeProperty, isVer ? ScrollMode.Disabled : ScrollMode.Enabled);
+            this.hiveWrapView.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Disabled : ScrollBarVisibility.Auto);
         }
 
         private async void HiveViewDemoPage_Loaded(object sender, RoutedEventArgs e)
         {
+
+            var panel = this.hiveWrapView.ItemsPanelRoot as HiveWrapPanel;
+            panel.DataContext = viewModel;
+
             await viewModel.LoadItems();
         }
 

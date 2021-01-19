@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" 
-    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -38,12 +38,17 @@
                                GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
                                />
             <lc:HiveWrapView x:Name="hiveWrapView" Margin="10" 
-                         Spacing="{x:Bind viewModel.WrapSpacing,Mode=OneWay}"
-                         FixedEdge="{x:Bind viewModel.WrapEdge,Mode=OneWay}"
-                         Orientation="{x:Bind viewModel.WrapOrientation,Mode=OneWay}"
                          ItemsSource="{x:Bind viewModel.Numbers}" 
                          ItemContainerStyle="{StaticResource cannotUnselectItemStyle}"
-                         SelectionChanged="hiveWrapView_SelectionChanged"/>
+                         SelectionChanged="hiveWrapView_SelectionChanged">
+                <lc:HiveWrapView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <lc:HiveWrapPanel Spacing="{Binding WrapSpacing,Mode=OneWay}"
+                                          FixedEdge="{Binding WrapEdge,Mode=OneWay}"
+                                          Orientation="{Binding WrapOrientation,Mode=OneWay}"/>
+                    </ItemsPanelTemplate>
+                </lc:HiveWrapView.ItemsPanel>
+            </lc:HiveWrapView>
 
             <StackPanel Grid.Column="2" Grid.Row="0"  Padding="10" Spacing="10">
                 <TextBlock Text="Orientation"/>
@@ -68,10 +73,10 @@
                                     HorizontalSpacing="12" Padding="12,3">
                     <HyperlinkButton Content="HiveWrapView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveWrapView.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveWrapView.cs"/>
                     <HyperlinkButton Content="HiveWrapPanel" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveWrapPanel.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveWrapPanel.cs"/>
                     <HyperlinkButton Content="Sample" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                      NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveWrapViewPage.xaml"/>

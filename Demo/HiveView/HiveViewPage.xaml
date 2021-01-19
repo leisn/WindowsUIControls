@@ -5,19 +5,35 @@
     xmlns:local="using:Demo.HiveView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:model="using:Demo.Models"
     mc:Ignorable="d"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:dh="using:Demo.Helpers"
+    xmlns:wuxdata="using:Windows.UI.Xaml.Data"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Resources>
+        <CollectionViewSource x:Name="itemCVS" IsSourceGrouped="True" Source="{x:Bind viewModel.Groups}" ItemsPath="Items"/>
+
+        <Style TargetType="lc:HiveViewItem" x:Key="headStyle" BasedOn="{StaticResource HiveViewItemStyle}">
+            <Setter Property="Width" Value="30"/>
+            <Setter Property="Height" Value="27"/>
+            <Setter Property="Background" Value="Orange"/>
+        </Style>
+    </Page.Resources>
 
     <controls:DockPanel>
 
-        <Border controls:DockPanel.Dock="Top" Padding="10" 
+        <StackPanel controls:DockPanel.Dock="Top" Padding="10" 
                 Background="{ThemeResource AppBarBackgroundThemeBrush}">
             <TextBlock TextWrapping="WrapWholeWords">
                 HiveView use a HivePanel as ItemsPanelTemplate. ItemsPanelTemplate must be inherited from HivePanel.
+               <LineBreak/>
+                This is a sample that HiveView used as SemanticZoom.ZoomedInView what the only supported for now.
             </TextBlock>
-        </Border>
+        </StackPanel>
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -30,33 +46,119 @@
                                ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
                                GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
                                />
+            <!--<SemanticZoom>
+                <SemanticZoom.ZoomedInView>
+                    <lc:HiveView x:Name="hiveView" Padding="10,10,20,10"
+                      ItemsSource="{x:Bind itemCVS.View}" 
+                      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                        <lc:HiveView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True" HeaderContainerStyle="{StaticResource headStyle}">
+                                <GroupStyle.HeaderTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}"/>
+                                    </DataTemplate>
+                                </GroupStyle.HeaderTemplate>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <lc:HivePanel />
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                            </GroupStyle>
+                        </lc:HiveView.GroupStyle>
+                        <lc:HiveView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel/>
+                            </ItemsPanelTemplate>
+                        </lc:HiveView.ItemsPanel>
+                        <lc:HiveView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding}"/>
+                                </Grid>
+                                
+                            </DataTemplate>
+                        </lc:HiveView.ItemTemplate>
+                    </lc:HiveView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <GridView x:Name="listView" Padding="0,3" ItemsSource="{x:Bind itemCVS.View.CollectionGroups}">
+                        <GridView.ItemTemplate>
+                            <DataTemplate x:DataType="wuxdata:ICollectionViewGroup">
+                                <Border>
+                                    <TextBlock Text="{x:Bind ((model:ItemsGroup)Group).Title}"/>
+                                </Border>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>-->
 
-            <lc:HiveView x:Name="hiveView" Padding="10,10,20,10"
-                      Spacing="{x:Bind viewModel.ViewSpacing,Mode=OneWay}"
-                      FixedEdge="{x:Bind viewModel.ViewEdge,Mode=OneWay}"
-                      ItemsSource="{x:Bind viewModel.Numbers}" 
-                      SelectionChanged="hiveView_SelectionChanged" />
+            <SemanticZoom>
+                <SemanticZoom.ZoomedInView>
+                    <ListView x:Name="listView" Padding="0,3" ItemsSource="{x:Bind itemCVS.View}">
+                        <ListView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True"/>
+                        </ListView.GroupStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsStackPanel AreStickyGroupHeadersEnabled="True"/>
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <lc:HiveView x:Name="hiveView" Padding="10,10,20,10" Width="249"
+                      ItemsSource="{x:Bind itemCVS.View.CollectionGroups}"
+                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                 Loaded="hiveView_Loaded">
+                        <lc:HiveView.ItemTemplate>
+                            <DataTemplate x:DataType="wuxdata:ICollectionViewGroup">
+                                <Border>
+                                    <TextBlock Text="{x:Bind ((model:ItemsGroup)Group).Title}"/>
+                                </Border>
+                            </DataTemplate>
+                        </lc:HiveView.ItemTemplate>
+                        <lc:HiveView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <lc:HivePanel  FixedEdge="{Binding ViewEdge,Mode=OneWay}"
+                                               Spacing="{Binding ViewSpacing,Mode=OneWay}"/>
+                            </ItemsPanelTemplate>
+                        </lc:HiveView.ItemsPanel>
+                    </lc:HiveView>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
 
-            <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
+            <muxc:TeachingTip x:Name="teachingTip" Target="{x:Bind listView}"
+                              Title="Switch to HiveView"
+                              Subtitle="Click group header will switch to SemanticZoom.ZoomedOutView">
+                <muxc:TeachingTip.IconSource>
+                    <muxc:SymbolIconSource Symbol="OpenPane"/>
+                </muxc:TeachingTip.IconSource>
+            </muxc:TeachingTip>
+
+                <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
                 <TextBlock Text="Spacing"/>
                 <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.ViewSpacing,Mode=TwoWay}" />
                 <TextBlock Text="FixedEdge"/>
                 <Slider Minimum="20" Maximum="60" Value="{x:Bind viewModel.ViewEdge,Mode=TwoWay}" />
-                <TextBlock Text="SelectedItem"/>
-                <TextBlock Text="{x:Bind viewModel.ViewSelected,Mode=OneWay}" TextWrapping="Wrap"/>
 
                 <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
                                     HorizontalSpacing="12" Padding="12,3">
 
                     <HyperlinkButton Content="HiveView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveView.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveView.cs"/>
                     <HyperlinkButton Content="HivePanel" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HivePanel.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HivePanel.cs"/>
                     <HyperlinkButton Content="HiveViewItem"
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveViewItem.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveViewItem.cs"/>
                     <HyperlinkButton Content="Sample" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                      NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveViewPage.xaml"/>

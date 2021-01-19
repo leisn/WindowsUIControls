@@ -40,11 +40,17 @@ namespace Demo.HiveView
             get { return wrapEdge; }
             set { SetProperty(ref wrapEdge, value); }
         }
+
+        public event Action<Orientation> OnOrientaionChanged;
         Orientation wrapOrientation = Orientation.Horizontal;
         public Orientation WrapOrientation
         {
             get { return wrapOrientation; }
-            set { SetProperty(ref wrapOrientation, value); }
+            set
+            {
+                SetProperty(ref wrapOrientation, value,
+                onChanged: () => { OnOrientaionChanged?.Invoke(value); });
+            }
         }
 
         public async Task LoadItems()

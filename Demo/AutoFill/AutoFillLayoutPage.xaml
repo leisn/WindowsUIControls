@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -72,7 +72,7 @@
                                     HorizontalSpacing="12" Padding="12,3">
                 <HyperlinkButton Content="AutoFillLayout" 
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/AutoFill/AutoFillLayout.cs"/>
+                                 NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/AutoFill/AutoFillLayout.cs"/>
                 <HyperlinkButton Content="Sample"
                                  ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                  NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/AutoFill/AutoFillLayoutPage.xaml"/>

@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-     xmlns:lc="using:Leisn.Uwp.UI.Controls"
+     xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -33,12 +33,18 @@
                                GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
                                />
             <lc:HiveGridView x:Name="hiveGridView" Padding="10,10,20,10"
-                             Spacing="{x:Bind viewModel.GridSpacing,Mode=OneWay}"
-                             RowCount="{x:Bind viewModel.GridRowCont,Mode=OneWay}"
-                             ColumnCount="{x:Bind viewModel.GridColCont,Mode=OneWay}"
-                             FixedEdge="{x:Bind viewModel.GridFixedEdge,Mode=OneWay}"
                              ItemsSource="{x:Bind viewModel.Points}"
-                             SelectionChanged="hiveGridView_SelectionChanged"/>
+                             SelectionChanged="hiveGridView_SelectionChanged">
+                <lc:HiveGridView.ItemsPanel>
+                    <ItemsPanelTemplate >
+                        <lc:HiveGrid AutoCell="True"
+                             Spacing="{Binding GridSpacing,Mode=OneWay}"
+                             RowCount="{Binding GridRowCont,Mode=OneWay}"
+                             ColumnCount="{Binding GridColCont,Mode=OneWay}"
+                             FixedEdge="{Binding GridFixedEdge,Mode=OneWay}"/>
+                    </ItemsPanelTemplate>
+                </lc:HiveGridView.ItemsPanel>
+            </lc:HiveGridView>
 
             <StackPanel Grid.Column="2" Grid.Row="0"  Padding="10" Spacing="10">
                 <TextBlock Text="Spacing"/>
@@ -55,10 +61,10 @@
                                     HorizontalSpacing="12" Padding="12,3">
                     <HyperlinkButton Content="HiveGridView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveGridView.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveGridView.cs"/>
                     <HyperlinkButton Content="HiveGrid" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.Uwp.UI.Controls/HiveView/HiveGrid.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveGrid.cs"/>
                     <HyperlinkButton Content="Sample"
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                      NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveGridViewPage.xaml"/>

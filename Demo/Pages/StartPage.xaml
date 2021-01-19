@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" d:Width="330" d:Height="250"
-    xmlns:lc="using:Leisn.Uwp.UI.Controls"
+    xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:wf="using:Windows.Foundation"
     xmlns:media="using:Microsoft.UI.Xaml.Media"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">

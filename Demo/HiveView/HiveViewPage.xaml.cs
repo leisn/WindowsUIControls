@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Demo.Helpers;
 using Demo.Models;
+using Leisn.UI.Xaml.Extensions;
+using Leisn.UI.Xaml.Controls;
+
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Demo.HiveView
@@ -36,18 +39,13 @@ namespace Demo.HiveView
         private async void HiveViewPage_Loaded(object sender, RoutedEventArgs e)
         {
             await viewModel.LoadItems();
+            teachingTip.IsOpen = true;
         }
 
-        private async void MarkdownTextBlock_LinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
+        private void hiveView_Loaded(object sender, RoutedEventArgs e)
         {
-            if (Uri.TryCreate(e.Link, UriKind.Absolute, out Uri uri))
-                await Launcher.LaunchUriAsync(uri);
+            var panel = this.hiveView.ItemsPanelRoot as HivePanel;
+            panel.DataContext = viewModel;
         }
-
-        private void hiveView_SelectionChanged(object sender, Leisn.Uwp.UI.Controls.SingleSelectionChangedEventArgs e)
-        {
-            viewModel.ViewSelected = ($"index = {e.OldIndex}, value = {e.OldValue}  -->  index = {e.NewIndex}, value = {e.NewValue}");
-        }
-
     }
 }

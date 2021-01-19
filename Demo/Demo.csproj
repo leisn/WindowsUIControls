@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Models\ControlCategorie.cs" />
     <Compile Include="Models\ControlItem.cs" />
+    <Compile Include="Models\ItemsGroup.cs" />
     <Compile Include="Models\MenuItemBase.cs" />
     <Compile Include="Pages\ControlListPage.xaml.cs">
       <DependentUpon>ControlListPage.xaml</DependentUpon>
@@ -232,7 +233,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>6.2.10</Version>
+      <Version>6.2.11</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
       <Version>6.1.1</Version>
@@ -248,13 +249,13 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Leisn.Uwp.UI.Controls\Leisn.Uwp.UI.Controls.csproj">
-      <Project>{15815fde-22e0-4ce3-92bb-021ef7359a18}</Project>
-      <Name>Leisn.Uwp.UI.Controls</Name>
-    </ProjectReference>
+    <EmbeddedResource Include="Resources\controls.json" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\controls.json" />
+    <ProjectReference Include="..\Leisn.UI.Xaml\Leisn.UI.Xaml.csproj">
+      <Project>{15815fde-22e0-4ce3-92bb-021ef7359a18}</Project>
+      <Name>Leisn.UI.Xaml</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>

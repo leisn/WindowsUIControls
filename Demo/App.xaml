@@ -8,12 +8,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
-                <ResourceDictionary Source="ms-appx:///Leisn.Uwp.UI.Controls/Themes/Generic.xaml"/>
+                <ResourceDictionary Source="ms-appx:///Leisn.UI.Xaml/Themes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <Style TargetType="HyperlinkButton">
                 <Setter Property="Foreground" Value="{ThemeResource SystemAccentColorDark2}"/>
             </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>
