@@ -72,7 +72,8 @@ namespace Leisn.Uwp.UI.Controls
         /// <summary>
         /// Force this be a regular hexagon<br/>
         /// When true, this item will always be a regular hexagon, no matter what size of content<br/>
-        /// When false, this item will be a regular hexagon only when content's width equals it's height
+        /// When false, this item will be a regular hexagon only when content's width equals it's height<br/>
+        /// But if you specific the width and height can override this
         /// </summary>
         public bool ForceRegularHexagon
         {
