@@ -39,7 +39,7 @@
                           CornerRadius="{TemplateBinding CornerRadius}">-->
                     <Grid>
                         <!--StrokeDashArray="{TemplateBinding StrokeDashArray}"-->
-                        <Polygon x:Name="PART_Polygon"
+                        <Polygon x:Name="PART_Hexagon"
                                  Stretch="Fill"
                                  Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
@@ -53,6 +53,7 @@
                                  StrokeStartLineCap="{TemplateBinding StrokeStartLineCap}"
                                  />
                         <ContentPresenter x:Name="PART_Content" 
+                                          Background="Orange"
                                           Foreground="{TemplateBinding Foreground}"
                                           Padding="{TemplateBinding Padding}" 
                                           Content="{TemplateBinding Content}" 
@@ -70,13 +71,13 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Normal"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Normal"/>
                                     </VisualState.Setters>
                                 </VisualState>
 
                                 <VisualState x:Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.Fill" 
+                                        <Setter Target="PART_Hexagon.Fill" 
                                                 Value="{Binding SelectedBackgroundBrush, Mode=OneWay,
                                                         RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                                         <Setter Target="PART_Content.Foreground" 
@@ -86,35 +87,35 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="1.5"/>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ToggleButtonBackgroundPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="1.5"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ToggleButtonBackgroundPointerOver}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ToggleButtonForegroundPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ToggleButtonBackgroundCheckedPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ToggleButtonBackgroundCheckedPointerOver}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ToggleButtonForegroundCheckedPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverPressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ToggleButtonBackgroundPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ToggleButtonBackgroundPressed}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ToggleButtonForegroundPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PressedSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ToggleButtonBackgroundCheckedPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ToggleButtonBackgroundCheckedPressed}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ToggleButtonForegroundCheckedPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
@@ -123,8 +124,8 @@
                                 <VisualState x:Name="Enabled"/>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="0"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ToggleButtonBackgroundDisabled}"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="0"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ToggleButtonBackgroundDisabled}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ToggleButtonForegroundDisabled}"/>
                                     </VisualState.Setters>
                                 </VisualState>
@@ -141,12 +142,12 @@
         <Setter Property="Foreground" Value="{ThemeResource ListViewItemForeground}"/>
         <Setter Property="SelectedBackgroundBrush" Value="{ThemeResource ListViewItemBackgroundSelected}"/>
         <Setter Property="SelectedForegroundBrush" Value="{ThemeResource ListViewItemForegroundSelected}"/>
-        
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:HiveViewItem">
                     <Grid>
-                        <Polygon x:Name="PART_Polygon"
+                        <Polygon x:Name="PART_Hexagon"
                                  Stretch="Fill"
                                  Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
@@ -177,12 +178,12 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Normal"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Normal"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.Fill" 
+                                        <Setter Target="PART_Hexagon.Fill" 
                                                 Value="{Binding SelectedBackgroundBrush, Mode=OneWay,
                                                         RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                                         <Setter Target="PART_Content.Foreground" 
@@ -192,38 +193,38 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="2"/>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ListViewItemBackgroundPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="2"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ListViewItemBackgroundPointerOver}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource ListViewItemForegroundPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ListViewItemBackgroundSelectedPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ListViewItemBackgroundSelectedPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverPressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ListViewItemBackgroundPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ListViewItemBackgroundPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PressedSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource ListViewItemBackgroundSelectedPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Stroke" Value="{ThemeResource ListViewItemRevealBorderBrushPressed}"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource ListViewItemBackgroundSelectedPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -231,7 +232,7 @@
                                 <VisualState x:Name="Enabled"/>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="0"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="0"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -256,7 +257,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:HiveViewItem">
                     <Grid>
-                        <Polygon x:Name="PART_Polygon"
+                        <Polygon x:Name="PART_Hexagon"
                                  Stretch="Fill"
                                  Points="12,0,4,0,0,6.9,4,13.9,12,13.9,16,6.9"
                                  Fill="{TemplateBinding Background}"
@@ -287,12 +288,12 @@
                             <VisualStateGroup x:Name="CommonStates">
                                 <VisualState x:Name="Normal">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Normal"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Normal"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Selected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.Fill" 
+                                        <Setter Target="PART_Hexagon.Fill" 
                                                 Value="{Binding SelectedBackgroundBrush, Mode=OneWay,
                                                         RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
                                         <Setter Target="PART_Content.Foreground" 
@@ -302,35 +303,35 @@
                                 </VisualState>
                                 <VisualState x:Name="PointerOver">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource GridViewItemBackgroundPointerOver}"/>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="2"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource GridViewItemBackgroundPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="2"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource GridViewItemForegroundPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="PointerOver"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource GridViewItemBackgroundSelected}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="PointerOver"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource GridViewItemBackgroundSelected}"/>
                                         <Setter Target="PART_Content.Foreground" Value="{ThemeResource GridViewItemForegroundSelected}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PointerOverPressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource GridViewItemBackgroundSelectedPointerOver}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource GridViewItemBackgroundSelectedPointerOver}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="Pressed">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource GridViewItemBackgroundPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource GridViewItemBackgroundPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                                 <VisualState x:Name="PressedSelected">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.(RevealBrush.State)" Value="Pressed"/>
-                                        <Setter Target="PART_Polygon.Fill" Value="{ThemeResource GridViewItemBackgroundSelectedPressed}"/>
+                                        <Setter Target="PART_Hexagon.(RevealBrush.State)" Value="Pressed"/>
+                                        <Setter Target="PART_Hexagon.Fill" Value="{ThemeResource GridViewItemBackgroundSelectedPressed}"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -338,7 +339,7 @@
                                 <VisualState x:Name="Enabled"/>
                                 <VisualState x:Name="Disabled">
                                     <VisualState.Setters>
-                                        <Setter Target="PART_Polygon.StrokeThickness" Value="0"/>
+                                        <Setter Target="PART_Hexagon.StrokeThickness" Value="0"/>
                                     </VisualState.Setters>
                                 </VisualState>
                             </VisualStateGroup>
@@ -358,8 +359,8 @@
         <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}"/>
         <Setter Property="Foreground" Value="{ThemeResource ApplicationForegroundThemeBrush}"/>
 
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
 
         <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="True"/>
         <Setter Property="ScrollViewer.VerticalScrollMode" Value="Enabled"/>
@@ -373,7 +374,6 @@
         <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
         <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
         <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
-
         <Setter Property="ItemContainerStyle" Value="{StaticResource HiveViewItemStyle}"/>
         <Setter Property="ItemContainerTransitions">
             <Setter.Value>
@@ -388,7 +388,7 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <local:HivePanel FixedEdge="30"/>
+                    <local:HivePanel/>
                 </ItemsPanelTemplate>
             </Setter.Value>
         </Setter>
@@ -435,6 +435,7 @@
 
     <Style TargetType="local:HiveView"  BasedOn="{StaticResource HiveViewStyle}"/>
 
+
     <Style TargetType="local:HiveWrapView" BasedOn="{StaticResource HiveViewStyle}">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="VerticalContentAlignment" Value="Stretch"/>
@@ -449,12 +450,51 @@
     </Style>
 
     <Style TargetType="local:HiveGridView" BasedOn="{StaticResource HiveViewStyle}">
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="ItemContainerStyle" Value="{StaticResource HiveGridViewItemStyle}"/>
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
                     <local:HiveGrid AutoCell="True"/>
                 </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="local:HiveViewGroupItem">
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:HiveViewGroupItem">
+                    <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <ContentControl x:Name="HeaderContent"
+                            Content="{TemplateBinding Content}"
+                                ContentTransitions="{TemplateBinding ContentTransitions}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                Margin="{TemplateBinding Padding}"
+                                TabIndex="0"
+                                IsTabStop="False" />
+                        <ItemsControl x:Name="ItemsControl"
+                                    Grid.Row="1"
+                                    ItemsSource="{Binding GroupItems}"
+                                    IsTabStop="False"
+                                    TabNavigation="Once"
+                                    TabIndex="1">
+                            <ItemsControl.ItemContainerTransitions>
+                                <AddDeleteThemeTransition />
+                                <ContentThemeTransition />
+                                <ReorderThemeTransition />
+                                <EntranceThemeTransition IsStaggeringEnabled="False" />
+                            </ItemsControl.ItemContainerTransitions>
+                        </ItemsControl>
+                    </Grid>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

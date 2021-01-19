@@ -17,8 +17,7 @@ using System.Diagnostics;
 
 namespace Leisn.Uwp.UI.Controls
 {
-    [TemplatePart(Name = "RootGrid", Type = typeof(Polygon))]
-    [TemplatePart(Name = "PART_Polygon", Type = typeof(Polygon))]
+    [TemplatePart(Name = "PART_Hexagon", Type = typeof(Polygon))]
     [TemplatePart(Name = "PART_Content", Type = typeof(ContentPresenter))]
     [TemplateVisualState(GroupName = "CommonStates", Name = "Normal")]
     [TemplateVisualState(GroupName = "CommonStates", Name = "Selected")]
@@ -40,7 +39,7 @@ namespace Leisn.Uwp.UI.Controls
         protected const string NormalState = "Normal";
         protected const string DisabledState = "Disabled";
 
-        protected Polygon polygon;
+        protected Polygon hexagon;
         protected ContentPresenter content;
 
         public event EventHandler<SelectorStateChangedEventArgs> Selected;
@@ -69,6 +68,24 @@ namespace Leisn.Uwp.UI.Controls
                 typeof(bool),
                 typeof(HiveViewItem),
                 new PropertyMetadata(true));
+
+        /// <summary>
+        /// Force this be a regular hexagon<br/>
+        /// When true, this item will always be a regular hexagon, no matter what size of content<br/>
+        /// When false, this item will be a regular hexagon only when content's width equals it's height
+        /// </summary>
+        public bool ForceRegularHexagon
+        {
+            get { return (bool)GetValue(ForceRegularHexagonProperty); }
+            set { SetValue(ForceRegularHexagonProperty, value); }
+        }
+
+        public static readonly DependencyProperty ForceRegularHexagonProperty =
+            DependencyProperty.Register(
+                nameof(ForceRegularHexagon),
+                typeof(bool),
+                typeof(HiveViewItem),
+                new PropertyMetadata(true, HiveViewItemPropertyChanged));
 
         public Brush SelectedForegroundBrush
         {
@@ -210,9 +227,9 @@ namespace Leisn.Uwp.UI.Controls
             if (e.Property == StrokeDashArrayProperty)
             {
                 var dc = (DoubleCollection)e.NewValue;
-                if (view.polygon != null)
+                if (view.hexagon != null)
                 {
-                    var dashArray = view.polygon.StrokeDashArray;
+                    var dashArray = view.hexagon.StrokeDashArray;
                     dashArray.Clear();
                     if (dc != null)
                     {
@@ -220,6 +237,10 @@ namespace Leisn.Uwp.UI.Controls
                             dashArray.Add(dv);
                     }
                 }
+            }
+            else if (e.Property == ForceRegularHexagonProperty)
+            {
+                view.InvalidateMeasure();
             }
         }
         protected void OnItemPropertyChanged(DependencyObject sender, DependencyProperty dp)
@@ -254,7 +275,7 @@ namespace Leisn.Uwp.UI.Controls
 
         protected override void OnApplyTemplate()
         {
-            polygon = GetTemplateChild("PART_Polygon") as Polygon;
+            hexagon = GetTemplateChild("PART_Polygon") as Polygon;
             content = GetTemplateChild("PART_Content") as ContentPresenter;
 
             VisualStateManager.GoToState(this, IsEnabled ?
@@ -262,6 +283,8 @@ namespace Leisn.Uwp.UI.Controls
             base.OnApplyTemplate();
         }
 
+        const double XScale = 1.5773503112793;
+        const double YScale = 1.366025390625;
         protected override Size MeasureOverride(Size availableSize)
         {
             Size requestSize = availableSize;
@@ -269,19 +292,29 @@ namespace Leisn.Uwp.UI.Controls
             {
                 content.Measure(availableSize);
                 var contentSize = content.DesiredSize;
-                var polygonEdge = contentSize.Height / 2 / Math.Tan(Math.PI * 60 / 180)
-                    + contentSize.Width / 2;
-                requestSize = new Size(
-                    HivePanel.GetWidthFromEdge(polygonEdge),
-                    HivePanel.GetHeightFromEdge(polygonEdge));
-                if (requestSize.Height < contentSize.Height)
+
+                if (ForceRegularHexagon)
                 {
-                    requestSize.Height = contentSize.Height;
-                    requestSize.Width = HivePanel.GetWidthFromHeight(contentSize.Height);
+                    var halfWidth = contentSize.Width / 2 + contentSize.Height / 2 / Math.Tan(Math.PI * 60 / 180);
+                    requestSize = new Size(HivePanel.GetWidthFromEdge(halfWidth), HivePanel.GetHeightFromEdge(halfWidth));
+                    if (requestSize.Height < contentSize.Height)
+                    {
+                        requestSize.Width = HivePanel.GetWidthFromHeight(contentSize.Height);
+                        requestSize.Height = contentSize.Height;
+                    }
+                }
+                else
+                {
+                    requestSize.Width = contentSize.Width * XScale;
+                    requestSize.Height = contentSize.Height * YScale;
                 }
             }
+
+            //requestSize.Width += StrokeThickness * 2;
+            //requestSize.Height += StrokeThickness * 2;
+
             base.MeasureOverride(requestSize);
-            return requestSize;//make sure it's our requestSize
+            return requestSize;
         }
 
         #region Deprecated justify polygon size
