@@ -39,7 +39,6 @@ namespace Demo.HiveView
         private async void HiveViewPage_Loaded(object sender, RoutedEventArgs e)
         {
             await viewModel.LoadItems();
-            teachingTip.IsOpen = true;
         }
 
         private void hiveView_Loaded(object sender, RoutedEventArgs e)

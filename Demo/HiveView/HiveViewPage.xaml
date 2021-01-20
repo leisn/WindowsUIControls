@@ -30,8 +30,6 @@
                 Background="{ThemeResource AppBarBackgroundThemeBrush}">
             <TextBlock TextWrapping="WrapWholeWords">
                 HiveView use a HivePanel as ItemsPanelTemplate. ItemsPanelTemplate must be inherited from HivePanel.
-               <LineBreak/>
-                This is a sample that HiveView used as SemanticZoom.ZoomedInView what the only supported for now.
             </TextBlock>
         </StackPanel>
 
@@ -93,7 +91,7 @@
                 </SemanticZoom.ZoomedOutView>
             </SemanticZoom>-->
 
-            <SemanticZoom>
+            <!--<SemanticZoom>
                 <SemanticZoom.ZoomedInView>
                     <ListView x:Name="listView" Padding="0,3" ItemsSource="{x:Bind itemCVS.View}">
                         <ListView.GroupStyle>
@@ -131,17 +129,28 @@
                         </lc:HiveView.ItemsPanel>
                     </lc:HiveView>
                 </SemanticZoom.ZoomedOutView>
-            </SemanticZoom>
+            </SemanticZoom>-->
 
-            <muxc:TeachingTip x:Name="teachingTip" Target="{x:Bind listView}"
-                              Title="Switch to HiveView"
-                              Subtitle="Click group header will switch to SemanticZoom.ZoomedOutView">
-                <muxc:TeachingTip.IconSource>
-                    <muxc:SymbolIconSource Symbol="OpenPane"/>
-                </muxc:TeachingTip.IconSource>
-            </muxc:TeachingTip>
+            <lc:HiveView x:Name="hiveView" Padding="10,10,20,10"
+                      ItemsSource="{x:Bind itemCVS.View.CollectionGroups}"
+                                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                 Loaded="hiveView_Loaded">
+                <lc:HiveView.ItemTemplate>
+                    <DataTemplate x:DataType="wuxdata:ICollectionViewGroup">
+                        <Border>
+                            <TextBlock Text="{x:Bind ((model:ItemsGroup)Group).Title}"/>
+                        </Border>
+                    </DataTemplate>
+                </lc:HiveView.ItemTemplate>
+                <lc:HiveView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <lc:HivePanel  FixedEdge="{Binding ViewEdge,Mode=OneWay}"
+                                               Spacing="{Binding ViewSpacing,Mode=OneWay}"/>
+                    </ItemsPanelTemplate>
+                </lc:HiveView.ItemsPanel>
+            </lc:HiveView>
 
-                <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
+            <StackPanel Grid.Column="2"  Padding="10" Spacing="10">
                 <TextBlock Text="Spacing"/>
                 <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.ViewSpacing,Mode=TwoWay}" />
                 <TextBlock Text="FixedEdge"/>

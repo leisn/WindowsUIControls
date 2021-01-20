@@ -53,6 +53,6 @@
         "Title": "Symbols",
         "Page": "Microsofts.SymbolsPage",
         "Glyph": "\uED58",
-        "Desc": "The symbols of `Windows.UI.Xaml.Controls.Symbol`. **Click item to copy name**. Sample use a `HiveView` as `SemanticZoom.ZoomedOutView`."
+        "Desc": "The symbols of `Windows.UI.Xaml.Controls.Symbol`.This sample use a `HiveView` as `SemanticZoom.ZoomedOutView`."
     }
 ]

@@ -38,10 +38,9 @@ namespace Demo.Microsofts
             await viewModel.LoadItems();
         }
 
-        private void GridView_ItemClick(object sender, ItemClickEventArgs e)
+        private void gridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = e.ClickedItem;
-
+            var item = this.gridView.SelectedItem; ;
             DataPackage dataPackage = new DataPackage();
             dataPackage.RequestedOperation = DataPackageOperation.Copy;
             dataPackage.SetText(item.ToString());
