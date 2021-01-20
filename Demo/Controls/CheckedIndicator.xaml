@@ -1,0 +1,429 @@
+﻿<UserControl
+    x:Class="Demo.Controls.CheckedIndicator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Demo.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Foreground="{ThemeResource SystemAccentColor}"
+    MinHeight="12" MaxHeight="16"
+    MinWidth="16" MaxWidth="16"
+    d:DesignHeight="16" 
+    d:DesignWidth="16">
+    <UserControl.Resources>
+        <Storyboard x:Key="storyBoard" RepeatBehavior="Forever">
+            <ObjectAnimationUsingKeyFrames Duration="0" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="Root">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.60" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p1">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.10">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.60">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.110" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p2">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.60">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.110">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.160" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p3">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.110">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.160">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.210" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p4">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.160">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.210">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.260" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p5">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.210">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.260">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.310" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p6">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.260">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.310">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.360" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p7">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.310">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.360">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.410" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p8">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.360">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.410">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.460" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p9">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.410">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.460">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.510" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p10">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.460">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.510">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.560" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p11">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.510">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.560">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.610" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p12">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.560">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.610">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.660" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p13">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.610">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.660">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.710" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p14">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.660">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.710">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.760" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p15">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.710">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.760">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.810" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p16">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.760">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.810">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.860" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p17">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.810">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.860">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:0.910" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p18">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.860">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.910">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames BeginTime="0" Duration="0:0:1.567" 
+                                           Storyboard.TargetProperty="Visibility" 
+                                           Storyboard.TargetName="p19">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.910">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <!--<DiscreteObjectKeyFrame KeyTime="0:0:1.555">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>-->
+            </ObjectAnimationUsingKeyFrames>
+        </Storyboard>
+    </UserControl.Resources>
+    <Grid x:Name="Root" Visibility="Collapsed" Background="{x:Bind Background}">
+        <Grid.Resources>
+            <Style TargetType="Polygon">
+                <Setter Property="Visibility" Value="Collapsed"/>
+                <Setter Property="StrokeThickness" Value="0"/>
+            </Style>
+        </Grid.Resources>
+        <Canvas Width="16" Height="12" VerticalAlignment="Center">
+            <Polygon x:Name="p1" Points="2.8,4.2 0.7,6.4 0,5.7 2.1,3.5" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p2" Points="2.1,3.5 0,5.7 1.4,7.1 3.5,4.9 " Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p3" Points="2.1,3.5 0,5.7 2.1,7.8 4.2,5.7" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p4" Points="2.1,3.5 0,5.7 2.8,8.5 4.9,6.4" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p5" Points="2.1,3.5 0,5.7 3.5,9.2 5.6,7.1" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p6" Points="2.1,3.5 0,5.7 4.2,9.9 6.3,7.8" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p7" Points="2.1,3.5 0,5.7 6.3,12 6.3,7.8" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p8" Points="2.1,3.5 0,5.7 6.3,12 8.3,9.9" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p9" Points="7,7.1 6.3,7.8 2.1,3.5 0,5.7 6.3,12 9,9.2" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p10" Points="7.7,6.4 6.3,7.8 2.1,3.5 0,5.7 6.3,12 9.7,8.5" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p11" Points="8.3,5.7 6.3,7.8 2.1,3.5 0,5.7 6.3,12 10.4,7.8" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p12" Points="9,4.9 6.3,7.8 2.1,3.5 0,5.7 6.3,12 11.1,7.1" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p13" Points="9.7,4.2 6.3,7.8 2.1,3.5 0,5.7 6.3,12 11.8,6.4" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p14" Points="10.4,3.5 6.3,7.8 2.1,3.5 0,5.7 6.3,12 12.5,5.7" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p15" Points="11.1,2.8 6.3,7.8 2.1,3.5 0,5.7 6.3,12 13.2,4.9" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p16" Points="11.8,2.1 6.3,7.8 2.1,3.5 0,5.7 6.3,12 13.9,4.2 " Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p17" Points="12.5,1.4 6.3,7.8 2.1,3.5 0,5.7 6.3,12 14.6,3.5" Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p18" Points="13.2,0.7 6.3,7.8 2.1,3.5 0,5.7 6.3,12 15.3,2.8 " Fill="{x:Bind Foreground}"/>
+            <Polygon x:Name="p19" Points="13.9,0 6.3,7.8 2.1,3.5 0,5.7 6.3,12 16,2.1" Fill="{x:Bind Foreground}"/>
+        </Canvas>
+    </Grid>
+    <!--<Canvas x:Name="canvas" Background="{x:Bind Background}">
+        --><!--Canvas.Left="-1.5" Canvas.Top="-3"--><!--
+        <Polygon Points="6.3,7.6 14,0 16,2 6.3,12 0,5.7 2.2,3.5" Fill="{x:Bind Foreground}"/>
+        <Rectangle x:Name="cover" 
+                       Canvas.Left="13.5" Canvas.Top="-9" Width="15.3" Height="11.8" 
+                       Fill="{x:Bind Background}">
+            <Rectangle.RenderTransform>
+                <MatrixTransform Matrix="0.7071 -0.7071 0.7071 0.7071 -0.3349 8.0985"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+    </Canvas>-->
+</UserControl>

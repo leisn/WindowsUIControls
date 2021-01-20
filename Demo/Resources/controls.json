@@ -48,5 +48,11 @@
                 "Path": "M10.3,4.3l-1.2,2H6.8l-1.2-2l1.2-2h2.3L10.3,4.3z M4.7,4.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,4.8z M4.7,9.8H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,9.8z M9.2,7.3H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,7.3z M13.7,4.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,4.8z M13.7,9.8h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,9.8z"
             }
         ]
+    },
+    {
+        "Title": "Symbols",
+        "Page": "Microsofts.SymbolsPage",
+        "Glyph": "\uED58",
+        "Desc": "The symbols of `Windows.UI.Xaml.Controls.Symbol`. **Click item to copy name**. Sample use a `HiveView` as `SemanticZoom.ZoomedOutView`."
     }
 ]

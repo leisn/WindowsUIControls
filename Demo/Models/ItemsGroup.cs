@@ -10,19 +10,26 @@ namespace Demo.Models
 {
     public class ItemsGroup
     {
-        public ObservableCollection<string> Items { get; }
+        public ObservableCollection<object> Items { get; }
 
         public string Title { get; set; }
 
         public ItemsGroup()
         {
-            Items = new ObservableCollection<string>();
+            Items = new ObservableCollection<object>();
         }
 
-        public ItemsGroup(string key, IEnumerable<string> items) : this()
+        public ItemsGroup(string key, IEnumerable<object> items) : this()
         {
             this.Title = key;
             foreach (var item in items)
+                this.Items.Add(item);
+        }
+
+        public ItemsGroup(IGrouping<string,object> grouping) : this()
+        {
+            this.Title = grouping.Key;
+            foreach (var item in grouping)
                 this.Items.Add(item);
         }
 

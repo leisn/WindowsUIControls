@@ -8,6 +8,7 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d" d:Width="500" d:Height="400"
     xmlns:hp="using:Demo.Helpers"
+    xmlns:myc="using:Demo.Controls"
     xmlns:models="using:Demo.Models"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     RequestedTheme="{x:Bind settings.Theme,Mode=OneWay}"
@@ -42,8 +43,11 @@
             <StackPanel>
                 <TextBlock Text="{x:Bind Title}" VerticalAlignment="Center"
                            Style="{ThemeResource TitleTextBlockStyle}"/>
-                <controls:MarkdownTextBlock Margin="0,3,0,0" Padding="15,7,0,5" 
+                <controls:MarkdownTextBlock Margin="0,3,0,0" Padding="12,0,0,5" 
                                             TextWrapping="WrapWholeWords"
+                                            Background="Transparent"
+                                            InlineCodeBackground="{ThemeResource AppBarBackgroundThemeBrush}"
+                                            InlineCodeForeground="{ThemeResource SystemAccentColorDark1}"
                                             LinkClicked="MarkdownTextBlock_LinkClicked"
                                             Text="{x:Bind Desc}" FontSize="13" FontStretch="Normal"
                                             CodeFontFamily="Consolas" FontWeight="Normal"
@@ -52,8 +56,8 @@
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
-
-    <muxc:NavigationView x:Name="navigationView" IsPaneOpen="True"
+    <Grid>
+        <muxc:NavigationView x:Name="navigationView" IsPaneOpen="True"
                          PaneDisplayMode="{x:Bind settings.NavigationPosition,Mode=OneWay}"
                          OpenPaneLength="256"
                          SelectionChanged="navigationView_SelectionChanged"
@@ -64,9 +68,11 @@
                          HeaderTemplate="{StaticResource navHeaderTemplate}"
                          PaneTitle="Controls"
                          >
-        <Frame x:Name="contentFrame"
+            <Frame x:Name="contentFrame"
                Navigated="contentFrame_Navigated"
                NavigationFailed="contentFrame_NavigationFailed"/>
 
-    </muxc:NavigationView>
+        </muxc:NavigationView>
+    </Grid>
+   
 </Page>

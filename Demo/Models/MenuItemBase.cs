@@ -10,6 +10,7 @@ namespace Demo.Models
     {
         public string Title { get; set; }
         public string Page { get; set; }
+        public string Desc { get; set; }
     }
 
     public class NavHeader

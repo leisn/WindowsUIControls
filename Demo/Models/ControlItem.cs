@@ -9,7 +9,6 @@ namespace Demo.Models
     public class ControlItem : MenuItemBase
     {
         public string Path { get; set; }
-        public string Desc { get; set; }
 
         //public Geometry Parse(string data)
         //{

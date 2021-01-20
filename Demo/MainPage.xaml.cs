@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 
 using Demo.Helpers;
 using Demo.Models;
@@ -109,7 +111,7 @@ namespace Demo
                 {
                     var menuItem = item as MenuItemBase;
                     header.Title = menuItem.Title;
-                    header.Desc = (menuItem as ControlItem)?.Desc;
+                    header.Desc = menuItem.Desc;
                 }
                 else
                 {
@@ -172,7 +174,7 @@ namespace Demo
                 if (Uri.TryCreate(markdown.UriPrefix + e.Link, UriKind.Absolute, out Uri link))
                     await Windows.System.Launcher.LaunchUriAsync(link);
             }
-           
         }
+
     }
 }
