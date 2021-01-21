@@ -169,14 +169,7 @@ namespace Leisn.UI.Xaml.Controls
                     var clientSize = new Size(
                          availableSize.Width - Padding.Left - Padding.Right,
                          availableSize.Height - Padding.Top - Padding.Bottom);
-                    if (RowCount == 1)
-                    {
-                        var bestwidth = (clientSize.Width - (ColumnCount - 1) * Spacing) / ColumnCount;
-                        var widthFromClientHeight = GetWidthFromHeight(clientSize.Height);
-                        itemWidth = Math.Min(bestwidth, widthFromClientHeight);
-                        itemHeight = GetHeightFromWidth(itemWidth);
-                    }
-                    else
+
                     if (ColumnCount == 1)
                     {
                         var heightFromClient = (clientSize.Height - (RowCount - 1) * Spacing) / RowCount;
@@ -283,21 +276,7 @@ namespace Leisn.UI.Xaml.Controls
         {
             double left = Padding.Left, top = Padding.Top;
 
-            if (RowCount == 1)
-            {
-                for (int i = 0; i < ColumnCount; i++)
-                {
-                    Cells[0, i] = new Rect
-                    {
-                        X = left,
-                        Y = top,
-                        Width = itemWidth,
-                        Height = itemHeight
-                    };
-                    left += itemWidth + Spacing;
-                }
-            }
-            else if (ColumnCount == 1)
+           if (ColumnCount == 1)
             {
                 for (int i = 0; i < RowCount; i++)
                 {
