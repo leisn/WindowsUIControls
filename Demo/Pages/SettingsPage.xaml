@@ -45,6 +45,24 @@
                         GitHub
                     </Hyperlink>
                 </TextBlock>
+
+                <TextBlock Text="References" Margin="0,20,0,5" Style="{ThemeResource SubtitleTextBlockStyle}"/>
+                <StackPanel Orientation="Horizontal" Spacing="15">
+                    <HyperlinkButton NavigateUri="https://github.com/microsoft/microsoft-ui-xaml" Padding="2">
+                        WinUI
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="https://docs.microsoft.com/uwp/toolkits/winui/" Padding="2">
+                        Docs
+                    </HyperlinkButton>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Spacing="15">
+                    <HyperlinkButton NavigateUri="https://github.com/windows-toolkit/WindowsCommunityToolkit"  Padding="2">
+                        Windows Community Toolkit
+                    </HyperlinkButton>
+                    <HyperlinkButton NavigateUri="https://docs.microsoft.com/windows/communitytoolkit/"  Padding="2">
+                        Docs
+                    </HyperlinkButton>
+                </StackPanel>
             </StackPanel>
         </ScrollViewer>
     </Grid>

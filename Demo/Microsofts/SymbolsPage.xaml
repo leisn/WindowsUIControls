@@ -177,8 +177,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <AutoSuggestBox Visibility="{Binding ElementName=semanticZoom,Path=IsZoomedInViewActive}"
-                        Width="256" Margin="20,0,0,1" PlaceholderText="Search"
+            <StackPanel Margin="20,0,0,1" Orientation="Horizontal">
+                <AutoSuggestBox Visibility="{Binding ElementName=semanticZoom,Path=IsZoomedInViewActive}"
+                        Width="256"  PlaceholderText="Search"
                         HorizontalAlignment="Left" 
                         ItemsSource="{x:Bind viewModel.Filters}"
                         ItemTemplateSelector="{StaticResource suggestSelector}"
@@ -186,7 +187,13 @@
                         QueryIcon="Find" QuerySubmitted="AutoSuggestBox_QuerySubmitted"
                         TextChanged="AutoSuggestBox_TextChanged" 
                         SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
-
+                <ToggleButton Content="Aa" CornerRadius="0" Margin="15,0,0,0" 
+                              ToolTipService.ToolTip="Match Case"
+                              IsChecked="{x:Bind viewModel.MatchCase,Mode=TwoWay}"/>
+                <ToggleButton Content="Abc" CornerRadius="0" Margin="15,0,0,0" 
+                              ToolTipService.ToolTip="Match Order"
+                              IsChecked="{x:Bind viewModel.MatchOrder,Mode=TwoWay}"/>
+            </StackPanel>
 
             <SemanticZoom x:Name="semanticZoom" Grid.Row="1">
                 <SemanticZoom.ZoomedInView>

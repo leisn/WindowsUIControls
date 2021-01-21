@@ -148,19 +148,21 @@ namespace Demo
 
         private async void MarkdownTextBlock_LinkClicked(object sender, Microsoft.Toolkit.Uwp.UI.Controls.LinkClickedEventArgs e)
         {
-            if (e.Link.StartsWith("#"))
+            var markdown = sender as Microsoft.Toolkit.Uwp.UI.Controls.MarkdownTextBlock;
+            var link = e.Link;
+            if (link.StartsWith("#"))
             {
-                var link = e.Link.Substring(1, e.Link.Length - 1);
+                var uri = e.Link.Substring(1, e.Link.Length - 1);
                 foreach (var ca in viewModel.Categories)
                 {
-                    if (ca.Page == link)
+                    if (ca.Page == uri)
                     {
                         navigationView.SelectedItem = ca;
                         return;
                     }
                     foreach (var item in ca.Items)
                     {
-                        if (item.Page == link)
+                        if (item.Page == uri)
                         {
                             navigationView.SelectedItem = item;
                             return;
@@ -170,9 +172,10 @@ namespace Demo
             }
             else
             {
-                var markdown = sender as Microsoft.Toolkit.Uwp.UI.Controls.MarkdownTextBlock;
-                if (Uri.TryCreate(markdown.UriPrefix + e.Link, UriKind.Absolute, out Uri link))
-                    await Windows.System.Launcher.LaunchUriAsync(link);
+                if (!link.StartsWith("http"))
+                    link = markdown.UriPrefix + e.Link;
+                if (Uri.TryCreate(link, UriKind.Absolute, out Uri uri))
+                    await Windows.System.Launcher.LaunchUriAsync(uri);
             }
         }
 

@@ -53,6 +53,6 @@
         "Title": "Symbols",
         "Page": "Microsofts.SymbolsPage",
         "Glyph": "\uED58",
-        "Desc": "The symbols of `Windows.UI.Xaml.Controls.Symbol`.This sample use a `HiveView` as `SemanticZoom.ZoomedOutView`."
+        "Desc": "The symbols of `Windows.UI.Xaml.Controls.Symbol`. If you going to find a font icon, look at this [Character Map UWP](https://www.microsoft.com/store/productId/9WZDNCRDXF41). This sample use a `HiveView` as `SemanticZoom.ZoomedOutView`."
     }
 ]
