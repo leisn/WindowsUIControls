@@ -279,7 +279,7 @@ namespace Leisn.UI.Xaml.Controls
 
         protected override void OnApplyTemplate()
         {
-            hexagon = GetTemplateChild("PART_Polygon") as Polygon;
+            hexagon = GetTemplateChild("PART_Hexagon") as Polygon;
             content = GetTemplateChild("PART_Content") as ContentPresenter;
 
             VisualStateManager.GoToState(this, IsEnabled ?
