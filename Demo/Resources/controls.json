@@ -7,13 +7,13 @@
             {
                 "Title": "HiveView",
                 "Page": "HiveView.HiveViewPage",
-                "Desc": "A control that presents a collection of items, simple positions child elements as a hive with fixed edge.",
+                "Desc": "A control that presents a collection of items, simple positions child elements as a hive.",
                 "Path": "M5.8,4.3l-1.2,2H2.3l-1.2-2l1.2-2h2.3L5.8,4.3z M9.2,4.8H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,4.8z M13.7,2.3h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,2.3z M4.7,7.3H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,7.3z M9.2,9.8H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,9.8zM13.7,7.3h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,7.3z"
             },
             {
                 "Title": "HiveWrapView",
                 "Page": "HiveView.HiveWrapViewPage",
-                "Desc": "A control that base on HiveView, positions child elements in sequential position from left to right, breaking content to next line at the edge of containing box. Also with fixed edge.",
+                "Desc": "A control that base on HiveView, positions child elements in sequential position from left to right, breaking content to next line at the edge of containing box.",
                 "Path": "M14.8,10.5l-1.2,2h-2.3l-1.2-2l1.2-2h2.3L14.8,10.5z M9.2,1H6.8L5.7,3l1.2,2h2.3l1.2-2L9.2,1z M9.2,11H6.8l-1.2,2l1.2,2h2.3l1.2-2L9.2,11z M4.7,3.5H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,3.5z M4.7,8.5H2.3l-1.2,2l1.2,2h2.3l1.2-2L4.7,8.5zM9.2,6H6.8L5.7,8l1.2,2h2.3l1.2-2L9.2,6z M13.7,3.5h-2.3l-1.2,2l1.2,2h2.3l1.2-2L13.7,3.5z"
             },
             {
