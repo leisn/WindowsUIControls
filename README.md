@@ -9,6 +9,8 @@ UI controls library for UWP.
 * HiveView
 
   A control that presents a collection of items, simple positions child elements as a hive.
+  
+  ![hive-view](https://github.com/leisn/WindowsUIControls/blob/master/Demo/Screenshot/HiveView.png)
 
 * HiveWrapView
 
