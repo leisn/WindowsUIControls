@@ -48,5 +48,28 @@ namespace Demo.Microsofts
 
             notification.Show(1567);
         }
+
+
+        private void AutoSuggestBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
+        {
+            //do nothing we won't change gridView
+        }
+
+        private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            viewModel.FilterChanged(sender.Text);
+        }
+
+        private void AutoSuggestBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
+        {
+            var item = args.SelectedItem;
+            if(item is string)
+            {
+                sender.Text = "";
+                return;
+            }
+            this.gridView.SelectedItem = item;
+            this.gridView.MakeVisible(new SemanticZoomLocation { Item = item });
+        }
     }
 }

@@ -15,11 +15,13 @@ namespace Demo.Microsofts
 {
     public class SymbolsViewModel : BaseViewModel
     {
+        public ObservableCollection<object> Filters;
         public ObservableCollection<ItemsGroup> Groups;
 
         public SymbolsViewModel()
         {
             Groups = new ObservableCollection<ItemsGroup>();
+            Filters = new ObservableCollection<object>();
         }
 
         public async Task LoadItems()
@@ -32,6 +34,7 @@ namespace Demo.Microsofts
             var list = new List<object>();
             foreach (var item in syms)
             {
+                Filters.Add(item);
                 list.Add(item);
             }
             var groups = from sym in list
@@ -45,6 +48,32 @@ namespace Demo.Microsofts
             }
 
             IsBusy = false;
+        }
+
+        public void FilterChanged(string filterText)
+        {
+            Filters.Clear();
+            var filters = filterText.Trim().ToLower().Split(' ');
+
+            foreach (var item in Groups)
+            {
+                foreach (var s in item.Items)
+                {
+                    var found = filters.Length < 1 || filters.All((key) =>
+                    {
+                        return s.ToString().ToLower().Contains(key);
+                    });
+                    if (found)
+                        Filters.Add((Symbol)s);
+                }
+            }
+            if (Filters.Count == 0)
+                Filters.Add("Not Found");
+        }
+
+        public void QuerySubmitted(object filterText)
+        {
+
         }
     }
 }

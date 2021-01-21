@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    xmlns:local="using:Demo.Microsofts"
     xmlns:wuxdata="using:Windows.UI.Xaml.Data"
     xmlns:lc="using:Leisn.UI.Xaml.Controls"
     xmlns:myc="using:Demo.Controls"
@@ -97,6 +98,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style TargetType="GridViewHeaderItem">
             <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
             <Setter Property="FontSize" Value="{ThemeResource GridViewHeaderItemThemeFontSize}" />
@@ -143,11 +145,52 @@
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Key="suggestTemplate" x:DataType="Symbol">
+            <StackPanel Padding="5,3" Orientation="Horizontal" >
+                <SymbolIcon Symbol="{x:Bind}" VerticalAlignment="Center"/>
+                <TextBlock x:Name="textBox"  Margin="12,0,0,0" 
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       Text="{x:Bind}" TextWrapping="Wrap" 
+                                       VerticalAlignment="Center"/>
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="stringSuggestTemplate" x:DataType="x:String">
+            <Grid HorizontalAlignment="Stretch">
+                <StackPanel Padding="5,3" Orientation="Horizontal" >
+                    <Rectangle Width="16" Height="16"/>
+                    <TextBlock  Margin="12,0,0,0" Text="{x:Bind}" 
+                                       Style="{ThemeResource CaptionTextBlockStyle}"
+                                       VerticalAlignment="Center"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+
+        <local:SuggestItemTemplateSelector x:Name="suggestSelector"
+                                           StringItemTemplate="{StaticResource stringSuggestTemplate}"
+                                           SymbolItemTemplate="{StaticResource suggestTemplate}"/>
     </Page.Resources>
+
     <Grid>
-        <SemanticZoom>
-            <SemanticZoom.ZoomedInView>
-                <GridView x:Name="gridView"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <AutoSuggestBox Visibility="{Binding ElementName=semanticZoom,Path=IsZoomedInViewActive}"
+                        Width="256" Margin="20,0,0,1" PlaceholderText="Search"
+                        HorizontalAlignment="Left" 
+                        ItemsSource="{x:Bind viewModel.Filters}"
+                        ItemTemplateSelector="{StaticResource suggestSelector}"
+                        Background="{ThemeResource AppBarBackgroundThemeBrush}"
+                        QueryIcon="Find" QuerySubmitted="AutoSuggestBox_QuerySubmitted"
+                        TextChanged="AutoSuggestBox_TextChanged" 
+                        SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+
+
+            <SemanticZoom x:Name="semanticZoom" Grid.Row="1">
+                <SemanticZoom.ZoomedInView>
+                    <GridView x:Name="gridView"
                           ItemContainerStyle="{StaticResource itemContainerStyle}" 
                           ItemsSource="{x:Bind itemCVS.View}"
                           Margin="12,0" IsItemClickEnabled="False"
@@ -158,35 +201,36 @@
                           ScrollViewer.VerticalScrollBarVisibility="Disabled"
                           ScrollViewer.VerticalScrollMode="Disabled"
                   ItemTemplate="{StaticResource symbolTemplate}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <ItemsWrapGrid/>
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                    <GridView.GroupStyle>
-                        <GroupStyle HidesIfEmpty="True"/>
-                    </GridView.GroupStyle>
-                </GridView>
-            </SemanticZoom.ZoomedInView>
-            <SemanticZoom.ZoomedOutView>
-                <lc:HiveView x:Name="hiveView" Padding="10,10,20,10" Width="300"
+                        <GridView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <ItemsWrapGrid/>
+                            </ItemsPanelTemplate>
+                        </GridView.ItemsPanel>
+                        <GridView.GroupStyle>
+                            <GroupStyle HidesIfEmpty="True"/>
+                        </GridView.GroupStyle>
+                    </GridView>
+                </SemanticZoom.ZoomedInView>
+                <SemanticZoom.ZoomedOutView>
+                    <lc:HiveView x:Name="hiveView" Padding="10,10,20,10" Width="300"
                       ItemsSource="{x:Bind itemCVS.View.CollectionGroups}"
                                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                    <lc:HiveView.ItemTemplate>
-                        <DataTemplate x:DataType="wuxdata:ICollectionViewGroup">
-                            <Border>
-                                <TextBlock Text="{x:Bind ((model:ItemsGroup)Group).Title}"/>
-                            </Border>
-                        </DataTemplate>
-                    </lc:HiveView.ItemTemplate>
-                    <lc:HiveView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <lc:HivePanel FixedEdge="30" />
-                        </ItemsPanelTemplate>
-                    </lc:HiveView.ItemsPanel>
-                </lc:HiveView>
-            </SemanticZoom.ZoomedOutView>
-        </SemanticZoom>
+                        <lc:HiveView.ItemTemplate>
+                            <DataTemplate x:DataType="wuxdata:ICollectionViewGroup">
+                                <Border>
+                                    <TextBlock Text="{x:Bind ((model:ItemsGroup)Group).Title}"/>
+                                </Border>
+                            </DataTemplate>
+                        </lc:HiveView.ItemTemplate>
+                        <lc:HiveView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <lc:HivePanel FixedEdge="30" />
+                            </ItemsPanelTemplate>
+                        </lc:HiveView.ItemsPanel>
+                    </lc:HiveView>
+                </SemanticZoom.ZoomedOutView>
+            </SemanticZoom>
+        </Grid>
 
         <controls:InAppNotification x:Name="notification" ShowDismissButton="False"
                                     AnimationDuration="0:00:0.100"
@@ -195,7 +239,7 @@
                                     BorderThickness="2" HorizontalOffset="-200" VerticalOffset="0" 
                                     VerticalAlignment="Top" HorizontalAlignment="Center">
             <controls:InAppNotification.RenderTransform>
-                <TranslateTransform Y="-15"/>
+                <TranslateTransform Y="-25"/>
             </controls:InAppNotification.RenderTransform>
             <StackPanel Orientation="Horizontal">
                 <myc:CheckedIndicator IsActive="True" VerticalAlignment="Center"
@@ -204,7 +248,7 @@
                            FontSize="13" FontWeight="SemiBold"/>
             </StackPanel>
         </controls:InAppNotification>
-        
+
         <ProgressRing IsActive="{x:Bind viewModel.IsBusy}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Grid>
 </Page>
