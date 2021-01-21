@@ -124,10 +124,11 @@
     <Compile Include="AutoFill\AutoFillLayout.cs" />
     <Compile Include="AutoFill\AutoFillLayoutState.cs" />
     <Compile Include="AutoFill\AutoFillPanel.cs" />
+    <Compile Include="Core\SimpleMatrix.cs" />
     <Compile Include="EventArgs\SelectorStateChangedEventArgs.cs" />
     <Compile Include="EventArgs\SingleSelectionChangedEventArgs.cs" />
     <Compile Include="Extensions\ColorConverter.cs" />
-    <Compile Include="Extensions\ObservableVector.cs" />
+    <Compile Include="Core\ObservableVector.cs" />
     <Compile Include="Extensions\RectClip.cs" />
     <Compile Include="Extensions\RectClips.cs" />
     <Compile Include="Extensions\Rects.cs" />

@@ -29,160 +29,14 @@
                                ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
                                GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
                                />
-        <ScrollViewer >
-            <lc:HiveGrid x:Name="hiveGrid"
+        
+        <lc:HiveGrid x:Name="hiveGrid" HorizontalAlignment="Center" VerticalAlignment="Center"
                              AutoCell="{x:Bind viewModel.Autocell,Mode=OneWay}"
                              Spacing="{x:Bind viewModel.PanelSpacing,Mode=OneWay}"
                              RowCount="{x:Bind viewModel.PanelRowCont,Mode=OneWay}"
                              ColumnCount="{x:Bind viewModel.PanelColCont,Mode=OneWay}"
                              FixedEdge="{x:Bind viewModel.PanelFixedEdge,Mode=OneWay}"
-                             Margin="10,10,20,10">
-                <lc:HiveViewItem Content="1(3,3)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="3"  
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="2(3,2)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="2"
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="3(3,1)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="1"
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="4(3,0)" lc:HiveGrid.Row="3" lc:HiveGrid.Column="0" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="5(2,3)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="3"  
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="6(2,2)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="2" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="7(2,1)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="1"  
-                                  StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="8(2,0)" lc:HiveGrid.Row="2" lc:HiveGrid.Column="0" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="9(1,3)"  lc:HiveGrid.Row="1" lc:HiveGrid.Column="3"
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="10(1,2)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="2"  
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="11(1,1)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="1"  
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="12(1,0)" lc:HiveGrid.Row="1" lc:HiveGrid.Column="0" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="13(0,3)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="3" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="14(0,2)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="2" 
-                                 StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="15(0,1)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="1" 
-                                  StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-                <lc:HiveViewItem Content="16(0,0)" lc:HiveGrid.Row="0" lc:HiveGrid.Column="0"
-                                  StrokeThickness="{x:Bind viewModel.StrokeThickness,Mode=OneWay}"
-                                 StrokeDashArray="{x:Bind viewModel.StrokeDashArray,Mode=OneWay}"
-                                 StrokeDashCap="{x:Bind viewModel.StrokeDashCap,Mode=OneWay}"
-                                 StrokeDashOffset="{x:Bind viewModel.StrokeDashOffset,Mode=OneWay}"
-                                 StrokeLineJoin="{x:Bind viewModel.StrokeLineJoin,Mode=OneWay}"
-                                 StrokeEndLineCap="{x:Bind viewModel.StrokeEndLineCap,Mode=OneWay}"
-                                 StrokeMiterLimit="{x:Bind viewModel.StrokeMiterLimit,Mode=OneWay}"
-                                 StrokeStartLineCap="{x:Bind viewModel.StrokeStartLineCap,Mode=OneWay}"/>
-            </lc:HiveGrid>
-        </ScrollViewer>
+                             Margin="10,10,20,10"/>
 
         <ScrollViewer Grid.Column="2" >
             <StackPanel>
@@ -201,7 +55,7 @@
                     </StackPanel>
                 </controls:Expander>
 
-                <controls:Expander Header="Item Stroke" IsExpanded="False" HorizontalContentAlignment="Stretch">
+                <controls:Expander Header="Items Stroke" IsExpanded="False" HorizontalContentAlignment="Stretch">
                     <StackPanel Spacing="5"  Padding="20,5">
                         <TextBlock Text="StrokeThickness"/>
                         <Slider Minimum="0" Maximum="10" Value="{x:Bind viewModel.StrokeThickness,Mode=TwoWay}" />

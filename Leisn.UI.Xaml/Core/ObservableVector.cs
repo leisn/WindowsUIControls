@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 using Windows.Foundation.Collections;
 
-namespace Leisn.UI.Xaml.Extensions
+namespace Leisn.UI.Xaml
 {
     public class VectorChangedEventArgs : IVectorChangedEventArgs
     {

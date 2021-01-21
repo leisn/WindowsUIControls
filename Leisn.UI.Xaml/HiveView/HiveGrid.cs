@@ -13,13 +13,6 @@ namespace Leisn.UI.Xaml.Controls
 {
     public class HiveGrid : HivePanel
     {
-        public HiveGrid()
-        {
-            this.FixedEdge = 0d;
-        }
-
-        public static double InfinityEdge { get; set; } = 30;
-
         #region DependencyProperty
         public static readonly DependencyProperty RowCountProperty =
           DependencyProperty.Register(
@@ -62,9 +55,7 @@ namespace Leisn.UI.Xaml.Controls
         {
             if (d is HiveGrid hg)
             {
-                hg.Cells = new Rect[hg.RowCount, hg.ColumnCount];
-                hg.InvalidateMeasure();
-                hg.InvalidateArrange();
+                hg.RequestMeasure();
             }
         }
         #endregion
@@ -124,16 +115,38 @@ namespace Leisn.UI.Xaml.Controls
         {
             if (VisualTreeHelper.GetParent(d) is HiveGrid grid)
             {
-                grid?.InvalidateMeasure();
-                grid?.InvalidateArrange();
+                if (grid != null)
+                {
+                    grid.RequestMeasure();
+                }
             }
         }
         #endregion
 
-        protected Rect[,] Cells = new Rect[1, 1];
+        protected int measureId;
+        protected volatile int requestMeasure = 0;
+        protected bool measureInProgress = false;
+        protected SimpleMatrix<Rect> Cells;
+
+        protected void RequestMeasure()
+        {
+            requestMeasure++;
+            if (!measureInProgress)
+                InvalidateMeasure();
+        }
+
+        protected bool isDirty()
+        {
+            return Cells == null
+                || Cells.RowCount != RowCount
+                || Cells.ColumnCount != ColumnCount
+                || requestMeasure != measureId;
+        }
 
         protected override Size MeasureOverride(Size availableSize)
         {
+            //Debug.WriteLine(requestMeasure + " " + measureId);
+
             int count = Children.Count;
             var requiredSize = new Size(
               Padding.Left + Padding.Right,
@@ -141,66 +154,72 @@ namespace Leisn.UI.Xaml.Controls
 
             if (count == 0 || ColumnCount == 0 || RowCount == 0)
                 return requiredSize;
-
-            double itemWidth;
-            double itemHeight;
-            #region cal itemWidth and itemHeight
-            if (double.IsNaN(FixedEdge) || FixedEdge == 0)
+            try
             {
-                var clientSize = new Size(
-                    availableSize.Width - Padding.Left - Padding.Right,
-                     availableSize.Height - Padding.Top - Padding.Bottom);
-                if (RowCount == 1)
+                measureInProgress = true;
+                measureId = requestMeasure;
+
+                Cells = new SimpleMatrix<Rect>(RowCount, ColumnCount);
+                double itemWidth;
+                double itemHeight;
+
+                #region cal itemWidth and itemHeight
+                if (double.IsNaN(FixedEdge) || FixedEdge == 0)
                 {
-                    var bestwidth = (clientSize.Width - (ColumnCount - 1) * Spacing) / ColumnCount;
-                    var widthFromClientHeight = GetWidthFromHeight(clientSize.Height);
-                    itemWidth = Math.Min(bestwidth, widthFromClientHeight);
-                    itemHeight = GetHeightFromWidth(itemWidth);
-                }
-                else
-                if (ColumnCount == 1)
-                {
-                    var heightFromClient = (clientSize.Height - (RowCount - 1) * Spacing) / RowCount;
-                    var heightFromClientWidth = GetHeightFromWidth(clientSize.Width);
-                    itemHeight = Math.Min(heightFromClient, heightFromClientWidth);
-                    itemWidth = GetWidthFromHeight(itemHeight);
-                }
-                else
-                {
-                    if (double.IsInfinity(clientSize.Width)
-                          && double.IsInfinity(clientSize.Height))
+                    var clientSize = new Size(
+                         availableSize.Width - Padding.Left - Padding.Right,
+                         availableSize.Height - Padding.Top - Padding.Bottom);
+                    if (RowCount == 1)
                     {
-                        itemWidth = GetWidthFromEdge(InfinityEdge);
-                        itemHeight = GetHeightFromWidth(itemWidth);
-                    }
-                    else if (double.IsInfinity(clientSize.Width))
-                    {
-                        itemHeight = (clientSize.Height - (RowCount - 1) * Spacing - VerticalSpacing) / (RowCount + 0.5);
-                        itemWidth = GetWidthFromHeight(itemHeight);
-                    }
-                    else if (double.IsInfinity(clientSize.Height))
-                    {
-                        itemWidth = (clientSize.Width - (ColumnCount - 1) * HorizontalSpacing) / (3 * ColumnCount + 1) * 4;
+                        var bestwidth = (clientSize.Width - (ColumnCount - 1) * Spacing) / ColumnCount;
+                        var widthFromClientHeight = GetWidthFromHeight(clientSize.Height);
+                        itemWidth = Math.Min(bestwidth, widthFromClientHeight);
                         itemHeight = GetHeightFromWidth(itemWidth);
                     }
                     else
+                    if (ColumnCount == 1)
                     {
-                        var bestWidth = (clientSize.Width - (ColumnCount - 1) * HorizontalSpacing) / (3 * ColumnCount + 1) * 4;
-                        var bestHeight = (clientSize.Height - (RowCount - 1) * Spacing - VerticalSpacing) / (RowCount + 0.5);
-                        var widthFromBestHeight = GetWidthFromHeight(bestHeight);
-                        itemWidth = Math.Min(bestWidth, widthFromBestHeight);
-                        itemHeight = GetHeightFromWidth(itemWidth);
+                        var heightFromClient = (clientSize.Height - (RowCount - 1) * Spacing) / RowCount;
+                        var heightFromClientWidth = GetHeightFromWidth(clientSize.Width);
+                        itemHeight = Math.Min(heightFromClient, heightFromClientWidth);
+                        itemWidth = GetWidthFromHeight(itemHeight);
+                    }
+                    else
+                    {
+                        if (double.IsInfinity(clientSize.Width)
+                              && double.IsInfinity(clientSize.Height))
+                        {
+                            var size = GetChildrenMaxSize(clientSize);
+                            itemWidth = size.Width;
+                            itemHeight = size.Height;
+                        }
+                        else if (double.IsInfinity(clientSize.Width))
+                        {
+                            itemHeight = (clientSize.Height - (RowCount - 1) * Spacing - VerticalSpacing) / (RowCount + 0.5);
+                            itemWidth = GetWidthFromHeight(itemHeight);
+                        }
+                        else if (double.IsInfinity(clientSize.Height))
+                        {
+                            itemWidth = (clientSize.Width - (ColumnCount - 1) * HorizontalSpacing) / (3 * ColumnCount + 1) * 4;
+                            itemHeight = GetHeightFromWidth(itemWidth);
+                        }
+                        else
+                        {
+                            var bestWidth = (clientSize.Width - (ColumnCount - 1) * HorizontalSpacing) / (3 * ColumnCount + 1) * 4;
+                            var bestHeight = (clientSize.Height - (RowCount - 1) * Spacing - VerticalSpacing) / (RowCount + 0.5);
+                            var widthFromBestHeight = GetWidthFromHeight(bestHeight);
+                            itemWidth = Math.Min(bestWidth, widthFromBestHeight);
+                            itemHeight = GetHeightFromWidth(itemWidth);
+                        }
                     }
                 }
-            }
-            else
-            {
-                itemWidth = GetWidthFromEdge(FixedEdge);
-                itemHeight = GetHeightFromEdge(FixedEdge);
-            }
-            #endregion
+                else
+                {
+                    itemWidth = GetWidthFromEdge(FixedEdge);
+                    itemHeight = GetHeightFromEdge(FixedEdge);
+                }
+                #endregion
 
-            {
                 initCells(itemWidth, itemHeight);
                 var itemSize = new Size(itemWidth, itemHeight);
                 foreach (var item in Children)
@@ -209,8 +228,18 @@ namespace Leisn.UI.Xaml.Controls
                 var bounds = Cells.GetOutBounds();
                 requiredSize.Width += bounds.Width;
                 requiredSize.Height += bounds.Height;
-
                 return requiredSize;
+            }
+            finally
+            {
+                measureInProgress = false;
+                if (isDirty())
+                    InvalidateMeasure();
+                else
+                {
+                    measureId = 0;
+                    requestMeasure = 0;
+                }
             }
         }
 
@@ -237,15 +266,15 @@ namespace Leisn.UI.Xaml.Controls
                     row = Math.Min(RowCount - 1, Math.Max(0, row));
                     col = Math.Min(ColumnCount - 1, Math.Max(0, col));
                     child.Arrange(Cells[row, col]);
-                    
+
                 }
             }
-                //var bounds = Cells.GetOutBounds();
-                //bounds.Width += Padding.Left + Padding.Right;
-                //bounds.Height += Padding.Top + Padding.Bottom;
-                //var size = new Size(Math.Min(bounds.Width, finalSize.Width),
-                //Math.Min(bounds.Height, finalSize.Height));
-                //return size;
+            //var bounds = Cells.GetOutBounds();
+            //bounds.Width += Padding.Left + Padding.Right;
+            //bounds.Height += Padding.Top + Padding.Bottom;
+            //var size = new Size(Math.Min(bounds.Width, finalSize.Width),
+            //Math.Min(bounds.Height, finalSize.Height));
+            //return size;
 
             return finalSize;
         }
@@ -253,6 +282,7 @@ namespace Leisn.UI.Xaml.Controls
         private void initCells(double itemWidth, double itemHeight)
         {
             double left = Padding.Left, top = Padding.Top;
+
             if (RowCount == 1)
             {
                 for (int i = 0; i < ColumnCount; i++)
