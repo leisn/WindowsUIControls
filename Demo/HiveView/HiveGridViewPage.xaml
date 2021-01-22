@@ -15,9 +15,7 @@
         <Border controls:DockPanel.Dock="Top" Padding="10" 
                 Background="{ThemeResource AppBarBackgroundThemeBrush}">
             <TextBlock TextWrapping="WrapWholeWords">
-                HiveGridView use a HiveGrid as ItemsPanelTemplate. 
-                And by default HiveGrid.AutoCell=True.
-                ItemsPanelTemplate must be inherited from HiveGrid.
+                HiveGridView use a ItemsHiveGrid as ItemsPanelTemplate. 
             </TextBlock>
         </Border>
 
@@ -32,28 +30,44 @@
                                ResizeDirection="Columns" ResizeBehavior="BasedOnAlignment"
                                GripperCursor="Default" CursorBehavior="ChangeOnSplitterHover"
                                />
+            <!--<lc:HiveGridView x:Name="hiveGridView" Padding="10,10,20,10"
+                             ItemsSource="{x:Bind viewModel.Numbers}"
+                             SelectionChanged="hiveGridView_SelectionChanged"
+                             ScrollViewer.HorizontalScrollMode="Enabled"
+                             ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                             >-->
             <lc:HiveGridView x:Name="hiveGridView" Padding="10,10,20,10"
-                             ItemsSource="{x:Bind viewModel.Points}"
-                             SelectionChanged="hiveGridView_SelectionChanged">
+                             ItemsSource="{x:Bind viewModel.Numbers}"
+                             SelectionChanged="hiveGridView_SelectionChanged"
+                             >
                 <lc:HiveGridView.ItemsPanel>
                     <ItemsPanelTemplate >
-                        <lc:HiveGrid AutoCell="True"
+                        <lc:ItemsHiveGrid 
+                             Orientation="{Binding Orientation,Mode=OneWay}"
                              Spacing="{Binding GridSpacing,Mode=OneWay}"
-                             RowCount="{Binding GridRowCont,Mode=OneWay}"
-                             ColumnCount="{Binding GridColCont,Mode=OneWay}"
+                             MaximumRowsOrColumns="{Binding GridCount,Mode=OneWay}"
                              FixedEdge="{Binding GridFixedEdge,Mode=OneWay}"/>
                     </ItemsPanelTemplate>
                 </lc:HiveGridView.ItemsPanel>
             </lc:HiveGridView>
 
             <StackPanel Grid.Column="2" Grid.Row="0"  Padding="10" Spacing="10">
+                <TextBlock Text="Orientation"/>
+                <ComboBox ItemsSource="{x:Bind viewModel.Orientations}" HorizontalAlignment="Stretch"
+                      SelectedItem="{x:Bind viewModel.Orientation,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate x:DataType="Orientation">
+                            <TextBlock Text="{x:Bind}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <TextBlock Text="Spacing"/>
                 <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.GridSpacing,Mode=TwoWay}" />
-                <TextBlock Text="RowCount"/>
-                <Slider Minimum="1" Maximum="9"  Value="{x:Bind viewModel.GridRowCont,Mode=TwoWay}" />
-                <TextBlock Text="ColumnCount"/>
-                <Slider Minimum="1" Maximum="9" Value="{x:Bind viewModel.GridColCont,Mode=TwoWay}" />
-                <TextBlock Text="FixedEdge"/>
+                <TextBlock Text="MaximumRowsOrColumns"
+                           ToolTipService.ToolTip="Columns for Horizontal, Rows for Vertical"/>
+                <Slider Minimum="1" Maximum="9"  Value="{x:Bind viewModel.GridCount,Mode=TwoWay}" />
+                <TextBlock Text="FixedEdge"
+                           ToolTipService.ToolTip="Zero to fit client size or max child size when Infinity"/>
                 <Slider Minimum="0" Maximum="60" Value="{x:Bind viewModel.GridFixedEdge,Mode=TwoWay}" />
                 <TextBlock Text="SelectedItem"/>
                 <TextBlock Text="{x:Bind viewModel.Selection,Mode=OneWay}" TextWrapping="Wrap"/>
@@ -62,9 +76,9 @@
                     <HyperlinkButton Content="HiveGridView" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                      NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveGridView.cs"/>
-                    <HyperlinkButton Content="HiveGrid" 
+                    <HyperlinkButton Content="ItemsHiveGrid" 
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
-                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/HiveGrid.cs"/>
+                                     NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Leisn.UI.Xaml/HiveView/ItemsHiveGrid.cs"/>
                     <HyperlinkButton Content="Sample"
                                      ToolTipService.ToolTip="{Binding NavigateUri,RelativeSource={RelativeSource Mode=Self}}"
                                      NavigateUri="https://github.com/leisn/WindowsUIControls/tree/master/Demo/HiveView/HiveGridViewPage.xaml"/>

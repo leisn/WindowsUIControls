@@ -11,8 +11,10 @@ using Leisn.UI.Xaml.Extensions;
 
 namespace Leisn.UI.Xaml.Controls
 {
-    public class ItemsHiveGrid : HivePanel
+    public class ItemsHiveGrid : HivePanelBase
     {
+        protected SimpleMatrix<Rect> Cells;
+
         #region public properties
         public Orientation Orientation
         {
@@ -45,7 +47,6 @@ namespace Leisn.UI.Xaml.Controls
         }
         #endregion
 
-        protected SimpleMatrix<Rect> Cells;
         protected override Size MeasureOverride(Size availableSize)
         {
             int count = Children.Count;

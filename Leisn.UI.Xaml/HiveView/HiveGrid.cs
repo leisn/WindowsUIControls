@@ -11,7 +11,7 @@ using Leisn.UI.Xaml.Extensions;
 
 namespace Leisn.UI.Xaml.Controls
 {
-    public class HiveGrid : HivePanel
+    public class HiveGrid : HivePanelBase
     {
         #region DependencyProperty
         public static readonly DependencyProperty RowCountProperty =

@@ -12,13 +12,24 @@ namespace Demo.HiveView
 {
     public class HiveGridViewModel : BaseViewModel
     {
-        public ObservableCollection<string> Points;
-
+        public ObservableCollection<int> Numbers;
+        public Array Orientations;
         public HiveGridViewModel()
         {
-            Points = new ObservableCollection<string>();
+            Numbers = new ObservableCollection<int>();
+            Orientations = Enum.GetValues(typeof(Orientation));
         }
-
+        public event Action<Orientation> OnOrientaionChanged;
+        Orientation orientation = Orientation.Horizontal;
+        public Orientation Orientation
+        {
+            get { return orientation; }
+            set
+            {
+                SetProperty(ref orientation, value,
+                onChanged: () => { OnOrientaionChanged?.Invoke(value); });
+            }
+        }
 
         double gridFixedEdge = 30;
         public double GridFixedEdge
@@ -27,19 +38,13 @@ namespace Demo.HiveView
             set { SetProperty(ref gridFixedEdge, value); }
         }
 
-        int gridRowCont = 4;
-        public int GridRowCont
+        int gridCont = 4;
+        public int GridCount
         {
-            get { return gridRowCont; }
-            set { SetProperty(ref gridRowCont, value); }
+            get { return gridCont; }
+            set { SetProperty(ref gridCont, value); }
         }
 
-        int gridColCont = 4;
-        public int GridColCont
-        {
-            get { return gridColCont; }
-            set { SetProperty(ref gridColCont, value); }
-        }
 
         double gridSpacing = 4;
         public double GridSpacing
@@ -58,10 +63,10 @@ namespace Demo.HiveView
         public async Task LoadItems()
         {
             await Task.Delay(1);
-            Points.Clear();
+            Numbers.Clear();
             for (int i = 1; i < 17; i++)
             {
-                Points.Add($"{(i - 1) / 4}, {(i - 1) % 4}");
+                Numbers.Add(i);
             }
         }
     }

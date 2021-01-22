@@ -177,8 +177,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <StackPanel Margin="20,0,0,1" Orientation="Horizontal">
-                <AutoSuggestBox Visibility="{Binding ElementName=semanticZoom,Path=IsZoomedInViewActive}"
+            <StackPanel Margin="20,0,0,1" Orientation="Horizontal"
+                        Visibility="{Binding ElementName=semanticZoom,Path=IsZoomedInViewActive}">
+                <AutoSuggestBox
                         Width="256"  PlaceholderText="Search"
                         HorizontalAlignment="Left" 
                         ItemsSource="{x:Bind viewModel.Filters}"
@@ -210,7 +211,7 @@
                   ItemTemplate="{StaticResource symbolTemplate}">
                         <GridView.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <ItemsWrapGrid/>
+                                <ItemsWrapGrid AreStickyGroupHeadersEnabled="True"/>
                             </ItemsPanelTemplate>
                         </GridView.ItemsPanel>
                         <GridView.GroupStyle>

@@ -13,21 +13,6 @@ namespace Leisn.UI.Xaml.Controls
 {
     public class HiveWrapPanel : HivePanel
     {
-        #region public properties
-        public Orientation Orientation
-        {
-            get { return (Orientation)GetValue(OrientationProperty); }
-            set { SetValue(OrientationProperty, value); }
-        }
-
-        public static readonly DependencyProperty OrientationProperty =
-            DependencyProperty.Register(
-                nameof(Orientation),
-                typeof(Orientation),
-                typeof(HiveWrapPanel),
-                new PropertyMetadata(Orientation.Horizontal, LayoutPropertyChanged));
-        #endregion
-
         /// <inheritdoc/>
         protected override Size MeasureOverride(Size availableSize)
         {

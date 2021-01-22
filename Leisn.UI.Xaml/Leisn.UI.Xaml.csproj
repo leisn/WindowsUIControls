@@ -136,11 +136,13 @@
     <Compile Include="HiveView\HiveGrid.cs" />
     <Compile Include="HiveView\HiveGridView.cs" />
     <Compile Include="HiveView\HivePanel.cs" />
+    <Compile Include="HiveView\HivePanelBase.cs" />
     <Compile Include="HiveView\HiveView.cs" />
     <Compile Include="HiveView\HiveViewGroupItem.cs" />
     <Compile Include="HiveView\HiveWrapPanel.cs" />
     <Compile Include="HiveView\HiveViewItem.cs" />
     <Compile Include="HiveView\HiveWrapView.cs" />
+    <Compile Include="HiveView\ItemsHiveGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Leisn.UI.Xaml.rd.xml" />
   </ItemGroup>

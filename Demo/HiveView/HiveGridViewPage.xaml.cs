@@ -30,12 +30,20 @@ namespace Demo.HiveView
         {
             this.InitializeComponent();
             viewModel = new HiveGridViewModel();
+            viewModel.OnOrientaionChanged += ViewModel_OnOrientaionChanged;
             this.Loaded += HiveGridViewPage_Loaded;
         }
-
+        private void ViewModel_OnOrientaionChanged(Orientation ori)
+        {
+            bool isVer = ori == Orientation.Horizontal;
+            this.hiveGridView.SetValue(ScrollViewer.VerticalScrollModeProperty, isVer ? ScrollMode.Enabled : ScrollMode.Disabled);
+            this.hiveGridView.SetValue(ScrollViewer.VerticalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Auto : ScrollBarVisibility.Disabled);
+            this.hiveGridView.SetValue(ScrollViewer.HorizontalScrollModeProperty, isVer ? ScrollMode.Disabled : ScrollMode.Enabled);
+            this.hiveGridView.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Disabled : ScrollBarVisibility.Auto);
+        }
         private async void HiveGridViewPage_Loaded(object sender, RoutedEventArgs e)
         {
-            var panel = this.hiveGridView.ItemsPanelRoot as HiveGrid;
+            var panel = this.hiveGridView.ItemsPanelRoot as ItemsHiveGrid;
             panel.DataContext = viewModel;
             await viewModel.LoadItems();
         }

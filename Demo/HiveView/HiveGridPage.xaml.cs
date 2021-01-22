@@ -35,16 +35,16 @@ namespace Demo.HiveView
 
         private void HiveGridPage_Loaded(object sender, RoutedEventArgs e)
         {
-            for (int i = 0; i < viewModel.PanelRowCont; i++)
+            for (int i = 0; i < 6; i++)
             {
-                var row = viewModel.PanelRowCont - i;
-                for (int j = 0; j < viewModel.PanelRowCont; j++)
+                var row = 6 - i;
+                for (int j = 0; j < 5; j++)
                 {
-                    var col = viewModel.PanelColCont - j;
+                    var col = 5 - j;
                     var item = new HiveViewItem();
                     item.SetValue(HiveGrid.RowProperty, row - 1);
                     item.SetValue(HiveGrid.ColumnProperty, col - 1);
-                    item.Content = $"{i * viewModel.PanelColCont + j + 1} ({row},{col})";
+                    item.Content = $"{i * 5 + j + 1} ({row},{col})";
                     item.DataContext = viewModel;
                     item.SetBinding(HiveViewItem.StrokeThicknessProperty, new Binding
                     {

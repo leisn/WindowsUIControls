@@ -29,7 +29,7 @@
         <StackPanel controls:DockPanel.Dock="Top" Padding="10" 
                 Background="{ThemeResource AppBarBackgroundThemeBrush}">
             <TextBlock TextWrapping="WrapWholeWords">
-                HiveView use a HivePanel as ItemsPanelTemplate. ItemsPanelTemplate must be inherited from HivePanel.
+                HiveView use a HivePanel as ItemsPanelTemplate.
             </TextBlock>
         </StackPanel>
 
@@ -154,7 +154,7 @@
                 <TextBlock Text="Spacing"/>
                 <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.ViewSpacing,Mode=TwoWay}" />
                 <TextBlock Text="FixedEdge"/>
-                <Slider Minimum="20" Maximum="60" Value="{x:Bind viewModel.ViewEdge,Mode=TwoWay}" />
+                <Slider Minimum="0" Maximum="60" Value="{x:Bind viewModel.ViewEdge,Mode=TwoWay}" />
 
                 <controls:WrapPanel Background="{ThemeResource AppBarBackgroundThemeBrush}"
                                     HorizontalSpacing="12" Padding="12,3">

@@ -22,7 +22,7 @@
         <Border controls:DockPanel.Dock="Top" Padding="10"
                 Background="{ThemeResource AppBarBackgroundThemeBrush}">
             <TextBlock TextWrapping="WrapWholeWords">
-                HiveWrapView use a HiveWrapPanel as ItemsPanelTemplate. ItemsPanelTemplate must be inherited from HiveWrapPanel.
+                HiveWrapView use a HiveWrapPanel as ItemsPanelTemplate.
             </TextBlock>
         </Border>
 
@@ -63,7 +63,7 @@
                 <TextBlock Text="Spacing"/>
                 <Slider Minimum="0" Maximum="30"  Value="{x:Bind viewModel.WrapSpacing,Mode=TwoWay}" />
                 <TextBlock Text="FixedEdge"/>
-                <Slider  Minimum="10" Maximum="60" Value="{x:Bind viewModel.WrapEdge,Mode=TwoWay}" />
+                <Slider  Minimum="0" Maximum="60" Value="{x:Bind viewModel.WrapEdge,Mode=TwoWay}" />
                 <TextBlock Text="SelectedItem"/>
                 <TextBlock Text="{x:Bind viewModel.WrapSelection,Mode=OneWay}" TextWrapping="Wrap"/>
                 <ComboBox ItemsSource="{x:Bind viewModel.Numbers}" HorizontalAlignment="Stretch"
