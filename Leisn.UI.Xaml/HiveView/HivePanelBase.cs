@@ -19,8 +19,9 @@ namespace Leisn.UI.Xaml.Controls
         internal static double GetWidthFromHeight(double height) => GetEdgeFromHeight(height) * 2;
         internal static double GetWidthFromEdge(double edge) => edge * 2;
 
-        internal double HorizontalSpacing => Spacing / Math.Sin(Math.PI / 3);
         internal double VerticalSpacing => Spacing / 2;
+
+        internal double HorizontalSpacing => VerticalSpacing * Math.Sqrt(3);
 
         #region DependencyProperties
         public double Spacing

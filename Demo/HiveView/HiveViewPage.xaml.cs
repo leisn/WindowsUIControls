@@ -34,8 +34,16 @@ namespace Demo.HiveView
             this.InitializeComponent();
             viewModel = new HiveViewModel();
             this.Loaded += HiveViewPage_Loaded;
+            viewModel.OnOrientaionChanged += ViewModel_OnOrientaionChanged;
         }
-
+        private void ViewModel_OnOrientaionChanged(Orientation ori)
+        {
+            bool isVer = ori == Orientation.Horizontal;
+            this.hiveView.SetValue(ScrollViewer.VerticalScrollModeProperty, isVer ? ScrollMode.Enabled : ScrollMode.Disabled);
+            this.hiveView.SetValue(ScrollViewer.VerticalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Auto : ScrollBarVisibility.Disabled);
+            this.hiveView.SetValue(ScrollViewer.HorizontalScrollModeProperty, isVer ? ScrollMode.Disabled : ScrollMode.Enabled);
+            this.hiveView.SetValue(ScrollViewer.HorizontalScrollBarVisibilityProperty, isVer ? ScrollBarVisibility.Disabled : ScrollBarVisibility.Auto);
+        }
         private async void HiveViewPage_Loaded(object sender, RoutedEventArgs e)
         {
             await viewModel.LoadItems();

@@ -16,14 +16,25 @@ namespace Demo.HiveView
 
     public class HiveViewModel : BaseViewModel
     {
-
+        public Array Orientations;
         public ObservableCollection<ItemsGroup> Groups;
 
         public HiveViewModel()
         {
             Groups = new ObservableCollection<ItemsGroup>();
+            Orientations = Enum.GetValues(typeof(Orientation));
         }
-
+        public event Action<Orientation> OnOrientaionChanged;
+        Orientation orientation = Orientation.Horizontal;
+        public Orientation Orientation
+        {
+            get { return orientation; }
+            set
+            {
+                SetProperty(ref orientation, value,
+                onChanged: () => { OnOrientaionChanged?.Invoke(value); });
+            }
+        }
         double viewSpacing = 4;
         public double ViewSpacing
         {

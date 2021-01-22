@@ -54,24 +54,44 @@ namespace Leisn.UI.Xaml.Controls
                 child.Measure(fixedSize);
                 rect = new Rect(left, top, fixedSize.Width, fixedSize.Height);
                 arrageRects.Add(rect);
-                if (rect.Right + HorizontalSpacing + fixedSize.Width * 3 / 4 > clientSize.Width)
+                if (Orientation == Orientation.Horizontal)
                 {
-                    if (col % 2 == 0)
-                        top += fixedSize.Height + Spacing;
+                    if (rect.Right + HorizontalSpacing + fixedSize.Width * 3 / 4 > clientSize.Width)
+                    {
+                        if (col % 2 == 0)
+                            top += fixedSize.Height + Spacing;
+                        else
+                            top += fixedSize.Height / 2 + VerticalSpacing;
+                        left = Padding.Left;
+                        col = 0;
+                    }
                     else
-                        top += fixedSize.Height / 2 + VerticalSpacing;
-                    left = Padding.Left;
-                    col = 0;
+                    {
+                        left += fixedSize.Width * 3 / 4 + HorizontalSpacing;
+                        if (col % 2 == 0)
+                            top += fixedSize.Height / 2 + VerticalSpacing;
+                        else
+                            top -= fixedSize.Height / 2 + VerticalSpacing;
+                        col++;
+                    }
                 }
                 else
                 {
-                    left += fixedSize.Width * 3 / 4 + HorizontalSpacing;
-                    if (col % 2 == 0)
-                        top += fixedSize.Height / 2 + VerticalSpacing;
+                    if (rect.Bottom + Spacing + fixedSize.Height > clientSize.Height)
+                    {
+                        if (col % 2 == 0)
+                            top = Padding.Top + VerticalSpacing + fixedSize.Height / 2;
+                        else
+                            top = Padding.Top;
+                        left += HorizontalSpacing + fixedSize.Width * 3 / 4;
+                        col++;
+                    }
                     else
-                        top -= fixedSize.Height / 2 + VerticalSpacing;
-                    col++;
+                    {
+                        top += Spacing + fixedSize.Height;
+                    }
                 }
+
             }
 
             var bounds = arrageRects.GetOutBounds();
