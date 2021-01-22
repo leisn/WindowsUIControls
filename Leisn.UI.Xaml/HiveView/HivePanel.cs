@@ -53,7 +53,11 @@ namespace Leisn.UI.Xaml.Controls
         public double FixedEdge
         {
             get { return (double)GetValue(FixedEdgeProperty); }
-            set { SetValue(FixedEdgeProperty, value); }
+            set {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("FixedEdge < 0");
+                SetValue(FixedEdgeProperty, value);
+            }
         }
 
         public static readonly DependencyProperty FixedEdgeProperty =
@@ -69,7 +73,7 @@ namespace Leisn.UI.Xaml.Controls
             if (d is HivePanel hp)
             {
                 hp.InvalidateMeasure();
-                hp.InvalidateArrange();
+                //hp.InvalidateArrange();
             }
         }
 

@@ -455,45 +455,8 @@
         <Setter Property="ItemsPanel">
             <Setter.Value>
                 <ItemsPanelTemplate>
-                    <local:HiveGrid AutoCell="True"/>
+                    <local:ItemsHiveGrid MaximumRowsOrColumns="4"/>
                 </ItemsPanelTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style TargetType="local:HiveViewGroupItem">
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="local:HiveViewGroupItem">
-                    <Grid Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <ContentControl x:Name="HeaderContent"
-                            Content="{TemplateBinding Content}"
-                                ContentTransitions="{TemplateBinding ContentTransitions}"
-                                ContentTemplate="{TemplateBinding ContentTemplate}"
-                                ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
-                                Margin="{TemplateBinding Padding}"
-                                TabIndex="0"
-                                IsTabStop="False" />
-                        <ItemsControl x:Name="ItemsControl"
-                                    Grid.Row="1"
-                                    ItemsSource="{Binding GroupItems}"
-                                    IsTabStop="False"
-                                    TabNavigation="Once"
-                                    TabIndex="1">
-                            <ItemsControl.ItemContainerTransitions>
-                                <AddDeleteThemeTransition />
-                                <ContentThemeTransition />
-                                <ReorderThemeTransition />
-                                <EntranceThemeTransition IsStaggeringEnabled="False" />
-                            </ItemsControl.ItemContainerTransitions>
-                        </ItemsControl>
-                    </Grid>
-                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>

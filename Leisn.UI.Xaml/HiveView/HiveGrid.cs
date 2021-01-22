@@ -23,7 +23,11 @@ namespace Leisn.UI.Xaml.Controls
         public int RowCount
         {
             get { return (int)GetValue(RowCountProperty); }
-            set { SetValue(RowCountProperty, value); }
+            set {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("RowCount < 0");
+                SetValue(RowCountProperty, value); 
+            }
         }
 
         public static readonly DependencyProperty ColumnCountProperty =
@@ -35,7 +39,11 @@ namespace Leisn.UI.Xaml.Controls
         public int ColumnCount
         {
             get { return (int)GetValue(ColumnCountProperty); }
-            set { SetValue(ColumnCountProperty, value); }
+            set {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("ColumnCount < 0");
+                SetValue(ColumnCountProperty, value); 
+            }
         }
 
         public static readonly DependencyProperty AutoCellProperty =
@@ -43,7 +51,7 @@ namespace Leisn.UI.Xaml.Controls
                 nameof(AutoCell),
                 typeof(bool),
                 typeof(HiveGrid),
-                new PropertyMetadata(false, LayoutPropertyChanged));
+                new PropertyMetadata(false, CellPropertyChanged));
 
         public bool AutoCell
         {
@@ -247,11 +255,12 @@ namespace Leisn.UI.Xaml.Controls
             int ites = Math.Max(cellCount, count);
             for (int i = 0; i < ites; i++)
             {
+                if (i >= count)
+                    break;
                 var row = i / ColumnCount;
                 var col = i % ColumnCount;
-                row = Math.Min(RowCount - 1, Math.Max(0, row));
-                col = Math.Min(ColumnCount - 1, Math.Max(0, col));
-                if (i < count)
+                row = Math.Min(RowCount - 1, row);
+                col = Math.Min(ColumnCount - 1, col);
                 {
                     var child = Children[i];
                     row = AutoCell ? row : GetRow(child);
@@ -259,16 +268,8 @@ namespace Leisn.UI.Xaml.Controls
                     row = Math.Min(RowCount - 1, Math.Max(0, row));
                     col = Math.Min(ColumnCount - 1, Math.Max(0, col));
                     child.Arrange(Cells[row, col]);
-
                 }
             }
-            //var bounds = Cells.GetOutBounds();
-            //bounds.Width += Padding.Left + Padding.Right;
-            //bounds.Height += Padding.Top + Padding.Bottom;
-            //var size = new Size(Math.Min(bounds.Width, finalSize.Width),
-            //Math.Min(bounds.Height, finalSize.Height));
-            //return size;
-
             return finalSize;
         }
 
@@ -276,7 +277,7 @@ namespace Leisn.UI.Xaml.Controls
         {
             double left = Padding.Left, top = Padding.Top;
 
-           if (ColumnCount == 1)
+            if (ColumnCount == 1)
             {
                 for (int i = 0; i < RowCount; i++)
                 {
