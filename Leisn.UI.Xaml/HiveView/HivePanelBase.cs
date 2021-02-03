@@ -20,7 +20,6 @@ namespace Leisn.UI.Xaml.Controls
         internal static double GetWidthFromEdge(double edge) => edge * 2;
 
         internal double VerticalSpacing => Spacing / 2;
-
         internal double HorizontalSpacing => VerticalSpacing * Math.Sqrt(3);
 
         #region DependencyProperties

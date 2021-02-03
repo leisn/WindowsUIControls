@@ -29,16 +29,29 @@ namespace Leisn.UI.Xaml.Extensions
             byte a = 0xFF, r, g, b;
             if (hex.Length == 3)
             {
-                r = byte.Parse(hex.Substring(0, 1), NumberStyles.HexNumber);
-                g = byte.Parse(hex.Substring(1, 1), NumberStyles.HexNumber);
-                b = byte.Parse(hex.Substring(2, 1), NumberStyles.HexNumber);
+                var temp = hex.Substring(0, 1);
+                temp += temp;
+                r = byte.Parse(temp, NumberStyles.HexNumber);
+                temp = hex.Substring(1, 1);
+                temp += temp;
+                g = byte.Parse(temp, NumberStyles.HexNumber);
+                temp = hex.Substring(2, 1);
+                b = byte.Parse(temp, NumberStyles.HexNumber);
             }
             else if (hex.Length == 4)
             {
-                a = byte.Parse(hex.Substring(0, 1), NumberStyles.HexNumber);
-                r = byte.Parse(hex.Substring(1, 1), NumberStyles.HexNumber);
-                g = byte.Parse(hex.Substring(2, 1), NumberStyles.HexNumber);
-                b = byte.Parse(hex.Substring(3, 1), NumberStyles.HexNumber);
+                var temp = hex.Substring(0, 1);
+                temp += temp;
+                a = byte.Parse(temp, NumberStyles.HexNumber);
+                temp = hex.Substring(1, 1);
+                temp += temp;
+                r = byte.Parse(temp, NumberStyles.HexNumber);
+                temp = hex.Substring(2, 1);
+                temp += temp;
+                g = byte.Parse(temp, NumberStyles.HexNumber);
+                temp = hex.Substring(3, 1);
+                temp += temp;
+                b = byte.Parse(temp, NumberStyles.HexNumber);
             }
             else if (hex.Length == 6)
             {
