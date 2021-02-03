@@ -36,6 +36,7 @@ namespace Leisn.UI.Xaml.Extensions
                 temp += temp;
                 g = byte.Parse(temp, NumberStyles.HexNumber);
                 temp = hex.Substring(2, 1);
+                temp += temp;
                 b = byte.Parse(temp, NumberStyles.HexNumber);
             }
             else if (hex.Length == 4)
