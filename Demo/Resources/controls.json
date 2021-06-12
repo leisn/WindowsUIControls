@@ -1,5 +1,11 @@
 ﻿[
     {
+        "Title": "Inputs",
+        "Page": "Inputs.InputsPage",
+        "Glyph": "\uE0A2",
+        "Desc": "Simple controls for input."
+    },
+    {
         "Title": "Collections",
         "Page": "Pages.ControlListPage",
         "Glyph": "\uF0E2",

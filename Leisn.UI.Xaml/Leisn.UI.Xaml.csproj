@@ -124,11 +124,14 @@
     <Compile Include="AutoFill\AutoFillLayout.cs" />
     <Compile Include="AutoFill\AutoFillLayoutState.cs" />
     <Compile Include="AutoFill\AutoFillPanel.cs" />
+    <Compile Include="Controls\NumberBox.cs" />
+    <Compile Include="Controls\RangeBox.cs" />
     <Compile Include="Core\SimpleMatrix.cs" />
     <Compile Include="EventArgs\SelectorStateChangedEventArgs.cs" />
     <Compile Include="EventArgs\SingleSelectionChangedEventArgs.cs" />
     <Compile Include="Extensions\ColorConverter.cs" />
     <Compile Include="Core\ObservableVector.cs" />
+    <Compile Include="Extensions\DoubleStringConverter.cs" />
     <Compile Include="Extensions\RectClip.cs" />
     <Compile Include="Extensions\RectClips.cs" />
     <Compile Include="Extensions\Rects.cs" />
@@ -155,6 +158,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HiveView\HiveView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -164,6 +171,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -149,6 +149,9 @@
     <Compile Include="HiveView\HiveViewPage.xaml.cs">
       <DependentUpon>HiveViewPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Inputs\InputsPage.xaml.cs">
+      <DependentUpon>InputsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -223,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HiveView\HiveViewPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Inputs\InputsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
