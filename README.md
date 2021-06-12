@@ -42,3 +42,7 @@ UI controls library for UWP.
   A panel that arranging child elements in hive rows and columns, with fixed edge or auto size when set FixedEdge to zero.
   
   ![hive-grid](https://github.com/leisn/WindowsUIControls/blob/master/Demo/Screenshot/HiveGrid.png)
+
+### Inputs
+
+ ![Inputs](https://github.com/leisn/WindowsUIControls/blob/master/Demo/Screenshot/Inputs.png)
