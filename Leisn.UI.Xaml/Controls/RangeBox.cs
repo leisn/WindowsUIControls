@@ -97,7 +97,7 @@ namespace Leisn.UI.Xaml.Controls
         {
             if (thumb == null || null == rootGrid)
                 return;
-            thumb.Width = rootGrid.ActualWidth * (Value - Minimum) / Maximum - Minimum;
+            thumb.Width = rootGrid.ActualWidth * (Value - Minimum) / (Maximum - Minimum);
         }
 
 
